@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <style>
+      * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.contact {
+    padding: 50px 5%;
+    text-align: center;
+}
+
+.contact-card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    max-width: 400px;
+    margin: 20px auto;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 15px 0;
+    font-size: 1.1rem;
+}
+
+.contact-item span {
+    font-size: 1.5rem;
+}
+
+.contact-item p, 
+.contact-item a {
+    margin: 0;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-item a:hover {
+    color: #ff4d5a;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    background: #f9f9f9;
+    color: #333;
+}
+.navbar {
+    display: flex;
+    width: 100%;
+    position: fixed;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background: #111;
+    color: white;
+}
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+.nav-links li {
+    margin-left: 20px;
+}
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.nav-links a:hover {
+    color: #ff4d5a;
+}
+.hero {
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(120deg, #ff4d5a, #1e1e1e);
+    color: white;
+    text-align: center;
+}
+.hero h2 span {
+    color: yellow;
+}
+.btn {
+    display: inline-block;
+    background: #ff4d5a;
+    color: white;
+    padding: 10px 20px;
+    margin-top: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+.btn:hover {
+    background: #e03e4e;
+}
+.about {
+    display: flex;
+    padding: 50px 5%;
+    gap: 20px;
+}
+.about img {
+    width: 200px;
+    border-radius: 50%;
+}
+.skills, .projects, .contact {
+    padding: 50px 5%;
+    text-align: center;
+}
+.skill-list {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+.skill {
+    background: #ff4d5a;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 20px;
+}
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+.project-card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+.project-card:hover {
+    transform: translateY(-5px);
+}
+.contact form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px;
+    margin: auto;
+}
+.contact input, .contact textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+footer {
+    text-align: center;
+    padding: 15px;
+    background: #111;
+    color: white;
+}
+
+#experience {
+ 
+    background: white;
+    padding: 15px     25px;
+    margin: 0 auto;
+    width: 90%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+
+}
+
+/* typewriter effect  */
+
+#typewriters {
+  font-size: clamp(20px, 3vw, 36px);
+  font-weight: 600;
+  line-height: 1.2;
+  /* optional gradient text */
+  background: linear-gradient(120deg, black, black);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.caret {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 4px;
+  background: currentColor;
+  vertical-align: -2px;
+  animation: blink 1s steps(1, end) infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* accessibility: reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .caret { animation: none; }
+}
+
+
+
+    </style>
+
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <nav class="navbar">
+            <h1 class="logo">MyPortfolio</h1>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h2>Hello, I'm <span>Jogendar Das Bairagi</span></h2>
+        <p id="typewriter">Front-End Developer</p>
+        <a href="#projects" class="btn">View My Work</a>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <img src="https://media.licdn.com/dms/image/v2/D4D35AQHS0Kd4qktfXA/profile-framedphoto-shrink_400_400/B4DZYglvzyG8Ag-/0/1744303488606?e=1755874800&v=beta&t=bZEn35soSvqYSv74raEJId8qIX4gLjUTNwBptis7HJc" alt="Profile">
+        <div>
+            <h2>About Me</h2>
+            <p>I’m a passionate front-end developer with skills in HTML, CSS, JavaScript, and modern frameworks. I love building clean, modern, and user-friendly websites.</p>
+            <p>Currently in Final year at Medicaps University, Indore pursuing B.Tech in Computer Science</p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <h2>Skills</h2>
+        <div class="skill-list">
+            <div class="skill">HTML</div>
+            <div class="skill">CSS</div>
+            <div class="skill">JavaScript</div>
+            <div class="skill">React</div>
+            <div class="skill">c++</div>
+            <div class="skill">Git</div>
+            <div class="skill">Data Structure</div>
+            <div class="skill">Nodejs</div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <h2>Projects</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <iframe src="https://drive.google.com/file/d/1xP-_v49k58x3V3xosTF8gCgLu-qMyV0u/preview" width="405" height="280" allow="autoplay"></iframe>
+                <h3>Snake and Ladder Game, <a href="https://orange-lucila-77.tiiny.site/" target="_blank">Link</a> </h3>
+                <p>Daya and Jetha are two players <p>it has all basic functionalities like snake and ladder game such as comoing 6 will give them extra chance.</p></p>
+            </div>
+            <div class="project-card">
+                <iframe src="https://drive.google.com/file/d/13XIunpwaxoz-KiUP9NiFEuJW9LYlPwUB/preview" width="405" height="280" allow="autoplay"></iframe>
+                <h3>AI Resume Builder</h3>
+                <p> ●  Creates a ATS Friendly Resume For Students and generates pdf using js.pdf
+      ●  Allows Live Preview
+      ●  Integrated Gemini Api to generate professional summary
+      ●  Takes Interview according to skills provided using speech to text api
+</p>
+            </div>
+            <div class="project-card">
+                <iframe src="" width="405" height="280" allow="autoplay"></iframe>
+                <h3>AI Interviewer</h3>
+                <p>Developed an AI-powered mock interview platform that conducts interactive interviews tailored to the user’s skills.
+Integrated Speech-to-Text API to capture and analyze spoken responses in real-time.
+Uses Gemini API to generate dynamic, role-specific interview questions.
+Provides instant feedback on answers to help users improve communication and technical skills.
+</p></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+      <h2>Bluestock Fintech</h2>
+      <div>
+        <p>June 2025 – August 2025</p>
+        <ul><li>
+Contributed to the development of the IPO Web Application using HTML, CSS, JavaScript, and Bootstrap</li>
+<li>Designed and implemented Admin Dashboard UI using React and Vite</li> <li>featuring dynamic IPO listings</li></ul>
+
+
+      </div>
+    </section>
+   <!-- Contact Section -->
+<section id="contact" class="contact">
+    <h2>Contact Me</h2>
+    <div class="contact-card">
+        <div class="contact-item">
+            <span>📧</span>
+            <p><a id="email" href="https://gmail.com" target="_blank">jogendar8520@gmail.com</a></p>
+        </div>
+        <div class="contact-item">
+            <span>📱</span>
+            <p><a href="https://wa.me/+918989643599" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
+     alt="WhatsApp" 
+     style="width:15px; cursor:pointer;"> Whatsapp</a></p>
+            <p><a href="https://github.com/Jogendar-Bairagi" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" 
+     alt="GitHub" 
+     style="width:15px; cursor:pointer;">
+Github</a> </p>
+            <p><img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" 
+     alt="LinkedIn" 
+     style="width:15px; cursor:pointer;"><a href="https://www.linkedin.com/in/jogendar-bairagi/" target="_blank"> Linkedin</a></p>
+        </div>
+        <div class="contact-item">
+            <span>📍</span>
+            <p>Indore, India</p>
+        </div>
+    </div>
+</section>
+
+
+    <footer>
+        <p>© 2025 Jogendar. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelector(link.getAttribute('href'))
+            .scrollIntoView({ behavior: 'smooth' });
+    });
+});
+document.getElementById("email").addEventListener("click", function(e) {
+    e.preventDefault();
+    const email = "jogendar8520@gmail.com";
+
+    navigator.clipboard.writeText(email).then(() => {
+        alert("Email address copied: " + email);
+    }).catch(err => {
+        console.error("Failed to copy email: ", err);
+    });
+});
+
+//typewriter animation effect
+const phrases = [
+  "Frontend Developer",
+  "Problem Solver",
+];
+
+const el = document.querySelector("#typewriter");
+
+// Tunables
+const TYPE_SPEED = 70;     // ms per character while typing
+const ERASE_SPEED = 55;    // ms per character while deleting
+const PAUSE_END = 900;     // pause after finishing a phrase
+const PAUSE_START = 400;   // pause before typing next phrase
+
+let i = 0;
+
+async function typePhrase(text) {
+  for (let j = 0; j < text.length; j++) {
+    el.textContent = text.slice(0, j + 1);
+    await wait(TYPE_SPEED);
+  }
+}
+
+async function erasePhrase(text) {
+  for (let j = text.length; j > 0; j--) {
+    el.textContent = text.slice(0, j - 1);
+    await wait(ERASE_SPEED);
+  }
+}
+
+function wait(ms) {
+  return new Promise(res => setTimeout(res, ms));
+}
+
+async function loop() {
+  while (true) {
+    const text = phrases[i % phrases.length] + "|";
+    await wait(PAUSE_START);
+    await typePhrase(text);
+    await wait(PAUSE_END);
+    await erasePhrase(text);
+    i++;
+  }
+}
+
+loop();
+
+    </script>
+</body>
+</html>
