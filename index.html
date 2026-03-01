@@ -15,9 +15,9 @@
             <li><a href="#about">About</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#experience">Experience</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="https://drive.google.com/drive/folders/113ie4sJxk_OJxJfgy7r01w3vNWAsNc6w?usp=sharing" target="_blank">Resume</a></li>
-
+            <li><a href="#contact">Quick links</a></li>
+            <li><a href="https://drive.google.com/drive/folders/1ekEdIDo8eKy7wToCyqZnAPG89cniHY_D?usp=sharing" target="_blank">Resume</a></li>
+            <li><a href="#ReachMe">Reach me directly!</a></li>
         </ul>
     </nav>
     
@@ -25,14 +25,14 @@
         
         <section class="portfolio-section" id="about">
             <div class="profile-info">
-                
-               
+             
+
                 <h1>Jogendar Das Bairagi</h1>
                 
                 <p class="title">Final Year B.Tech Student<br> at Medicaps University, Indore | Frontend Developer</p>
                 
 
-                <p class="bio">
+                <p class="bio"> 
                     A highly motivated final-year Computer Engineering student with hands-on experience in front-end development,
 including React, JavaScript, and Firebase. Skilled in building interactive web applications
 Seeking opportunities to contribute to innovative software projects.</p>
@@ -75,6 +75,7 @@ Seeking opportunities to contribute to innovative software projects.</p>
                     <div class="skill-item">React.js</div>
                     <div class="skill-item">Tailwind CSS</div>
                     <div class="skill-item">Git/GitHub</div>
+                    <div class="skill-item">REST APIs</div>
                     <div class="skill-item">Firebase</div>
                     <div class="skill-item">Data Structures</div>
                 </div>
@@ -124,18 +125,16 @@ snakes for setbacks.</li>
 
             <div class="project-card">
                 <img 
-                    src="ARB.PNG" 
-                    alt="Ai Interviewer Project Preview" 
+                    src="AIP.PNG" 
+                    alt="Ai Resume Builder Project Preview" 
                     class="project-image">
                 <div class="project-details">
                     <h3>AI Resume Builder</h3>
-                    <p class="project-tools">React.js, Firebase, Tailwind CSS</p>
+                    <p class="project-tools">HTML, CSS, JavaScript, .jsPdf</p>
                     <ul>
-                        <li>Built an application that generates ATS-friendly resumes and exports them as PDFs using JS.PDF.
- Integrated Gemini API to auto-generate professional summaries in under seconds based on user input..
- Developed a live preview functionality allowing users to see edits in real-time before exporting.
-                        </li>  </ul>
-                    <a href="https://resume-builder-xi-bice.vercel.app/" target="_blank" class="project-link-button">View Live Demo</a>
+                        <li>Built an application that generates ATS-friendly resumes and exports them as PDFs using JS.PDF.Integrated Gemini API to auto-generate professional summaries in based on user input.Developed a live preview functionality allowing users to see edits in real-time before exporting.</li>
+                    </ul>
+                    <a href="https://ai-interviewer-six.vercel.app/" target="_blank" class="project-link-button">View Live Demo</a>
                 </div>
             </div>
 
@@ -143,7 +142,7 @@ snakes for setbacks.</li>
         </section>
 
         <section class="experience-section" id="experience">
-            <h2>Experience & Education</h2>
+            <h2 style="color: inherit;">Experience & Education</h2>
 
             <div class="timeline">
                 
@@ -166,6 +165,39 @@ snakes for setbacks.</li>
                 </div>
             </div>
         </section>
+        <section class="contact-section">
+  <div id="ReachMe" class="contact-container">
+    <h2>Get In Touch</h2>
+    <p> Looking for a React developer for your team? Let’s discuss how I can help, or just say hi !</p>
+    
+    <form id="reachme-form" class="contact-form">
+      <div class="input-group">
+        <input type="text" name="name" required placeholder=" ">
+        <label>Your Name</label>
+      </div>
+      
+      <div class="input-group">
+        <input type="email" name="email" required placeholder="">
+        <label>Email Address</label>
+      </div>
+      
+      <div class="input-group">
+        <textarea name="message" rows="5" required placeholder=" "></textarea>
+        <label>Your Message</label>
+      </div>
+      
+      <button id="form-submit-btn" type="submit" class="submit-btn">
+        <span>Send Message</span>
+        <i class="fas fa-paper-plane"></i>
+      </button>
+      <div id="loader" style="display: none;">Sending...</div>
+  
+  <div id="success-msg" style="display: none; color: green; margin-top: 10px;">
+    ✅ Message sent successfully!
+  </div>
+    </form>
+  </div>
+</section>
         
     </main>
 <script>
@@ -183,12 +215,41 @@ document.getElementById("Email").addEventListener("click", function(e) {
     });
 });
 
+const form = document.getElementById('reachme-form');
+const btn = document.getElementById('form-submit-btn');
+const loader = document.getElementById('loader');
+const successMsg = document.getElementById('success-msg');
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault(); // This stops the page from redirecting
+  
+  // UI Changes
+  btn.style.display = 'none';
+  loader.style.display = 'inline-block';
+
+  const formData = new FormData(form);
+  
+  fetch('https://script.google.com/macros/s/AKfycbz-HvcurPZ1HXrhpDKJdfVDU-F-cEH1vZGnrA5PhHpD_rTD6vJEdhfzZxJ8FxrhWORHmQ/exec', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => {
+    loader.style.display = 'none';
+    successMsg.style.display = 'block';
+    form.reset(); // Clears the form fields
+  })
+  .catch(error => {
+    console.error('Error!', error.message);
+    btn.style.display = 'block';
+    loader.style.display = 'none';
+    successMsg.textContent = 'Failed to send message. Please try again.';
+    successMsg.style.color = 'red';
+    successMsg.style.display = 'block';
+    
+  });
+});
 
 
 </script>
 </body>
 </html>
-
-
-
-
