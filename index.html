@@ -5,12 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="Portfolio, Jogendar Das Bairagi, Frontend Developer, Web Developer, Medicaps University">
     <title>Jogendar Das Bairagi | Portfolio</title>
-    <link rel="stylesheet" href="index.css?update=march1"> 
+    <link rel="stylesheet" href="index.css"> 
 </head>
 <body>
-
+    
     <nav class="navbar">
-        <div class="nav-brand">My Portfolio</div>
+        <div class="nav-brand">
+            <div>My Portfolio</div>
+            <div><img src="menu.svg" id="menu-icon"><img id="close-icon" src="close.svg"> </div>
+        </div>
+        
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
             <li><a href="#projects">Projects</a></li>
@@ -125,7 +129,7 @@ snakes for setbacks.</li>
 
             <div class="project-card">
                 <img 
-                    src="AIP.PNG" 
+                    src="ARB.PNG" 
                     alt="Ai Resume Builder Project Preview" 
                     class="project-image">
                 <div class="project-details">
@@ -249,8 +253,19 @@ form.addEventListener('submit', (e) => {
   });
 });
 
+document.getElementById("menu-icon").addEventListener("click", function() {
+    document.querySelector(".nav-links").style.display = "flex";
+    document.getElementById("menu-icon").style.display = "none";
+    document.getElementById("close-icon").style.display = "block";
+});
+document.getElementById("close-icon").addEventListener("click", function() {
+    document.querySelector(".nav-links").style.display = "none";
+    document.getElementById("menu-icon").style.display = "block";
+    document.getElementById("close-icon").style.display = "none";
+});
+
+
 
 </script>
 </body>
 </html>
-
