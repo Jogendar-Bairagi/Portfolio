@@ -60,6 +60,12 @@
     .nav-links a:hover {
         color: #4a90e2;
     }
+    #menu-icon, #close-icon {
+        display: none;
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+    }
 
     /* --- 3. Hero / About Section (Existing Styles) --- */
     .portfolio-section {
@@ -382,6 +388,11 @@
             gap: 15px;
         }
 
+        #menu-icon {
+            display: block;
+
+        }
+
         /* About Section stacking */
         .portfolio-section {
             flex-direction: column; 
@@ -424,9 +435,17 @@
             flex-direction: column;
             gap: 10px;
         }
+        .nav-brand {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
         
         .nav-links {
+            display: none;
             flex-wrap: wrap;
+            text-align: left;
+            width: 100%;
             justify-content: center;
             gap: 10px;
         }
