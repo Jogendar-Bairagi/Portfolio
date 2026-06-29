@@ -1,4 +1,4 @@
-    /* --- 1. Base Styling --- */
+/* --- 1. Base Styling --- */
     body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         margin: 0;
@@ -67,7 +67,7 @@
         cursor: pointer;
     }
 
-    /* --- 3. Hero / About Section (Existing Styles) --- */
+    /* --- 3. Hero / About Section --- */
     .portfolio-section {
         max-width: 1100px;
         margin: 40px auto;
@@ -92,7 +92,16 @@
         object-fit: cover;
         border: 6px solid #4a90e2;
         margin-bottom: 25px;
-        display: block; 
+        display: block;
+    }
+
+    .eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        font-size: 0.78em;
+        font-weight: 700;
+        color: #4a90e2;
+        margin: 0 0 8px 0;
     }
 
     h1 {
@@ -106,7 +115,8 @@
         color: #4a90e2;
         font-weight: 500;
         margin-bottom: 20px;
-        font-size: 1.2em;
+        font-size: 1.15em;
+        line-height: 1.5;
     }
 
     .bio {
@@ -120,6 +130,7 @@
     .contact-links {
         display: flex;
         gap: 15px;
+        align-items: center;
     }
 
     .contact-button, .link-button {
@@ -156,7 +167,7 @@
     }
 
     .skills-container {
-        flex: 1; 
+        flex: 1;
         min-width: 250px;
     }
 
@@ -173,7 +184,7 @@
 
     .skills-grid {
         display: grid;
-        grid-template-columns: repeat(2, 1fr); 
+        grid-template-columns: repeat(2, 1fr);
         gap: 10px;
     }
 
@@ -184,7 +195,8 @@
         border-radius: 8px;
         text-align: center;
         font-weight: 600;
-        transition: all 0.3s ease; 
+        font-size: 0.92em;
+        transition: all 0.3s ease;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         cursor: default;
     }
@@ -196,7 +208,7 @@
         box-shadow: 0 8px 15px rgba(74, 144, 226, 0.4);
     }
 
-    /* --- 4. Projects Section Styles --- */
+    /* --- 4. Projects Section --- */
     .projects-section {
         background-color: #f9f9f9;
         max-width: 1100px;
@@ -211,6 +223,12 @@
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .project-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     }
 
     .project-image {
@@ -265,7 +283,7 @@
         background-color: #357ABD;
     }
 
-    /* --- 5. Experience Section Styles --- */
+    /* --- 5. Experience Section --- */
     .experience-section {
         max-width: 900px;
         margin: 0 auto;
@@ -276,7 +294,6 @@
         padding: 20px 0;
     }
 
-    /* Vertical Line for Timeline */
     .timeline::before {
         content: '';
         position: absolute;
@@ -293,7 +310,6 @@
         padding: 0 0 40px 20px;
     }
 
-    /* Timeline Dot */
     .timeline-item::before {
         content: '';
         position: absolute;
@@ -322,63 +338,43 @@
     }
 
     .timeline-content .company {
-        color:blue;
+        color:#357ABD;
         font-style: italic;
         margin-bottom: 15px;
         display: block;
+        font-weight: 600;
     }
 
     .timeline-content ul {
         list-style: disc;
         padding-left: 20px;
-        line-height: 1.5;
+        line-height: 1.55;
     }
 
-    /* ------------------------------------------------------------------ */
-    /* STYLING FOR THE INNER RED DOT FOR CURRENT ROLE */
-    /* ------------------------------------------------------------------ */
-
-    /* * 1. Target the timeline item that has the current role class.
-    * 2. Use the ::after pseudo-element to create the inner red dot.
-    */
     .current-timeline-item::after {
         content: '';
         position: absolute;
-        /* Position exactly where the ::before dot is */
-        left: -8px; /* Original left was 12px; 30px from margin - 4px border - 4px offset */
-        top: 9px;   /* Adjusted slightly from 'top: 5px' of the ::before */
-        
-        /* Dot appearance: smaller than the border dot */
+        left: -8px;
+        top: 9px;
         width: 12px;
         height: 12px;
-        background-color: #e74c3c; /* Bright red color */
+        background-color: #e74c3c;
         border-radius: 50%;
-        
-        /* Ensure it sits on top of the blue border dot */
         z-index: 5;
-        
-        /* Optional: Glow/Shadow effect */
         box-shadow: 0 0 5px rgba(231, 76, 60, 0.8);
     }
 
-    /* * Optional: Make the main dot (::before) for the current item a bit bigger/more prominent 
-    * to frame the red dot better.
-    */
     .current-timeline-item::before {
-        /* Optionally increase the size of the blue ring slightly */
-        width: 22px; 
+        width: 22px;
         height: 22px;
-        left: -16px; /* Re-center it after increasing size */
-        top: 1px; /* Adjust vertical position */
-        border-width: 4px; 
-        /* You can also change the blue color border here if needed, but keeping it blue */
+        left: -16px;
+        top: 1px;
+        border-width: 4px;
     }
 
     html {scroll-behavior: smooth; scroll-padding-top: 120px;}
 
     /* --- 6. Responsive Adjustments --- */
-
-    /* Tablet/Large Mobile (Max Width 992px) */
     @media (max-width: 992px) {
         .navbar {
             padding: 15px 20px;
@@ -390,35 +386,32 @@
 
         #menu-icon {
             display: block;
-
         }
 
-        /* About Section stacking */
         .portfolio-section {
-            flex-direction: column; 
-            align-items: flex-start; 
+            flex-direction: column;
+            align-items: flex-start;
             gap: 30px;
             padding: 30px;
         }
-        
+
         .profile-info {
             width: 100%;
             text-align: center;
         }
 
         .profile-picture {
-            margin: 0 auto 25px auto; 
+            margin: 0 auto 25px auto;
         }
 
         .skills-container h2 {
             text-align: center;
         }
-        
+
         .contact-links {
             justify-content: center;
         }
 
-        /* Projects stacking */
         .project-card {
             flex-direction: column;
         }
@@ -429,7 +422,6 @@
         }
     }
 
-    /* Mobile Layout (Max Width 576px) */
     @media (max-width: 576px) {
         .navbar {
             flex-direction: column;
@@ -440,7 +432,7 @@
             justify-content: space-between;
             width: 100%;
         }
-        
+
         .nav-links {
             display: none;
             flex-wrap: wrap;
@@ -451,7 +443,7 @@
         }
 
         .skills-grid {
-            grid-template-columns: 1fr; 
+            grid-template-columns: 1fr;
         }
 
         .contact-links {
@@ -459,7 +451,6 @@
             gap: 10px;
         }
 
-        /* Experience Timeline simplification */
         .timeline::before {
             left: 10px;
         }
@@ -476,7 +467,7 @@
         }
     }
     :root {
-  --primary-color: #00d2ff; /* Neon Blue */
+  --primary-color: #00d2ff;
   --secondary-color: #3a7bd5;
   --bg-glass: rgba(255, 255, 255, 0.05);
   --border-glass: rgba(255, 255, 255, 0.1);
@@ -487,7 +478,7 @@
   justify-content: center;
   align-items: center;
   padding: 50px 20px;
-  background: #0f172a; /* Dark sleek background */
+  background: #0f172a;
   font-family: 'Inter', sans-serif;
 }
 
@@ -502,13 +493,14 @@
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
-h2 {
+.contact-container h2 {
   color: #fff;
   margin-bottom: 10px;
   font-size: 2rem;
+  border-bottom: none;
 }
 
-p {
+.contact-container p {
   color: #94a3b8;
   margin-bottom: 30px;
 }
@@ -518,7 +510,7 @@ p {
   margin-bottom: 30px;
 }
 
-.input-group input, 
+.input-group input,
 .input-group textarea {
   width: 100%;
   padding: 10px 0;
@@ -529,6 +521,13 @@ p {
   border-bottom: 2px solid var(--border-glass);
   outline: none;
   transition: 0.3s;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+  border-bottom-color: var(--primary-color);
 }
 
 .input-group label {
@@ -540,8 +539,6 @@ p {
   transition: 0.3s;
 }
 
-/* Label animation on focus/valid */
-/* Move label if focused OR if the user has started typing (placeholder is hidden) */
 .input-group input:focus ~ label,
 .input-group input:not(:placeholder-shown) ~ label,
 .input-group textarea:focus ~ label,
@@ -566,13 +563,6 @@ p {
 .submit-btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 0 20px rgba(0, 210, 255, 0.4);
-}
-
-@media (max-width: 480px) {
-    .nav-links {
-        flex-direction: column;
-        gap: 10px;
-    }
 }
 
 #loader {
