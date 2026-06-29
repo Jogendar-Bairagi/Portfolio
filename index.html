@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="Portfolio, Jogendar Das Bairagi, Frontend Developer, Web Developer, Medicaps University">
-    <title>Jogendar Das Bairagi | Portfolio</title>
-    <link rel="stylesheet" href="index.css"> 
+    <meta name="keywords" content="Portfolio, Jogendar Das Bairagi, Frontend Developer, Full Stack Developer, React Developer, Medi-University">
+    <title>Jogendar Das Bairagi | Frontend / Full Stack Developer</title>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    
+
     <nav class="navbar">
         <div class="nav-brand">
             <div>My Portfolio</div>
             <div><img src="menu.svg" id="menu-icon"><img id="close-icon" src="close.svg"> </div>
         </div>
-        
+
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
             <li><a href="#projects">Projects</a></li>
@@ -24,47 +24,44 @@
             <li><a href="#ReachMe">Reach me directly!</a></li>
         </ul>
     </nav>
-    
+
     <main>
-        
+
         <section class="portfolio-section" id="about">
             <div class="profile-info">
-             
 
+                <p class="eyebrow">Frontend Heavy &middot; Full Stack</p>
                 <h1>Jogendar Das Bairagi</h1>
-                
-                <p class="title">Final Year B.Tech Student<br> at Medicaps University, Indore | Frontend Developer</p>
-                
 
-                <p class="bio"> 
-                    A highly motivated final-year Computer Engineering student with hands-on experience in front-end development,
-including React, JavaScript, and Firebase. Skilled in building interactive web applications
-Seeking opportunities to contribute to innovative software projects.</p>
+                <p class="title">Frontend Developer @ Coremacasia Technologies<br>B.Tech Computer Science, Medi-University, Indore</p>
+
+                <p class="bio">
+                    Frontend developer building production React applications for a live doctor-booking
+                    platform &mdash; from authentication flows to real-time appointment booking. Comfortable
+                    moving across the stack with Node.js and REST APIs when a feature calls for it. I care about
+                    interfaces that stay fast even when the data behind them doesn't, and about shipping
+                    features end-to-end rather than just frontend tickets.
+                </p>
 
                 <div id="contact" class="contact-links">
-                    <a id="Email" style="text-decoration: none; color: black; " href="mailto:jogendar8520@gmail.com" class="contact-buttosn" id="contact">
-                    <span style="font-size: 25px;">📧</span> 
+                    <a id="Email" style="text-decoration: none; color: black; " href="mailto:jogendar8520@gmail.com" class="contact-buttosn" >
+                    <span style="font-size: 25px;">📧</span>
                     </a>
-                  
 
-                       <!-- Linkedin Link -->
-
+                    <!-- Linkedin Link -->
                     <a href="https://www.linkedin.com/in/jogendar-bairagi/" target="_blank" class="link-buttson">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" alt="LinkedIn" style="width:25px; cursor:pointer;">
                     </a>
 
                     <!-- Git Link -->
-
-                     <a href="https://github.com/jogendar-Bairagi/" target="_blank" class="link-buttson">
+                    <a href="https://github.com/Jogendar-Bairagi/" target="_blank" class="link-buttson">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub" style="width:25px; cursor:pointer;">
                     </a>
-                    <!--Whatsapp Link -->
 
+                    <!--Whatsapp Link -->
                     <a href="https://wa.me/+918989643599" target="_blank" class="link-buttson">
                       <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width:35px; margin-top: -5px; " cursor:pointer;">
                     </a>
-                    
-                   
 
                 </div>
                     <span id="email-copied" style="font-size: 14px; color: red; display: none;">Email Address Copied! </span>
@@ -74,95 +71,115 @@ Seeking opportunities to contribute to innovative software projects.</p>
             <div class="skills-container">
                 <h2>Technical Stack</h2>
                 <div class="skills-grid">
-                    <div class="skill-item">HTML5 & CSS3</div>
-                    <div class="skill-item">JavaScript (ES6+)</div>
                     <div class="skill-item">React.js</div>
+                    <div class="skill-item">TypeScript</div>
+                    <div class="skill-item">JavaScript (ES6+)</div>
+                    <div class="skill-item">Next.js</div>
                     <div class="skill-item">Tailwind CSS</div>
-                    <div class="skill-item">Git/GitHub</div>
+                    <div class="skill-item">Zustand</div>
+                    <div class="skill-item">Node.js / Express</div>
                     <div class="skill-item">REST APIs</div>
                     <div class="skill-item">Firebase</div>
-                    <div class="skill-item">Data Structures</div>
+                    <div class="skill-item">MySQL</div>
+                    <div class="skill-item">Git / GitHub</div>
+                    <div class="skill-item">Postman</div>
                 </div>
             </div>
-            
+
         </section>
 
         <section class="projects-section" id="projects">
-            <h2 style="color: inherit;">Featured Projects</h2>         
+            <h2 style="color: inherit;">Featured Projects</h2>
             <div class="project-card">
-                <img 
-                    src="LABTS.PNG" 
-                    alt="Project Preview: Data Dashboard" 
+                <img
+                    src="LABTS.PNG"
+                    alt="Local Area Bus Tracking System preview"
                     class="project-image">
                 <div class="project-details">
                     <h3>Local Area Bus Tracking System</h3>
-                    <p class="project-tools">React.js, Firebase</p>
+                    <p class="project-tools">React.js &middot; Firebase &middot; Leaflet</p>
                     <ul>
-                        <li>Developed a real-time web application using React, Firebase Firestore, and Leaflet for tracking
-                            local buses. Enables drivers to share live GPS locations and passengers to view buses on an interactivemap.</li>
+                        <li>Built a dual-interface app for drivers and passengers, with role-based data access &mdash; drivers can update locations, passengers get read-only tracking.</li>
+                        <li>Used Firebase Firestore listeners for live GPS sharing, refreshing coordinates every 3&ndash;5 seconds on an interactive map.</li>
+                        <li>Supports tracking multiple active buses at once, improving route visibility for passengers.</li>
                     </ul>
                     <a href="https://driver-dashboard-six.vercel.app/" target="_blank" class="project-link-button">View Live Demo</a>
                 </div>
             </div>
 
             <div class="project-card">
-                <img 
-                    src="ARB.PNG" 
-                    alt="Ai Resume Builder Project Preview" 
+                <img
+                    src="ARB.PNG"
+                    alt="AI Resume Builder preview"
                     class="project-image">
                 <div class="project-details">
-                    <h3>AI Resume Builder</h3>
-                    <p class="project-tools">HTML, CSS, JavaScript, .jsPdf</p>
+                    <h3>AI Resume Builder & Interviewer</h3>
+                    <p class="project-tools">JavaScript &middot; Gemini API &middot; jsPDF</p>
                     <ul>
-                        <li>Built an application that generates ATS-friendly resumes and exports them as PDFs using JS.PDF.Integrated Gemini API to auto-generate professional summaries in based on user input.Developed a live preview functionality allowing users to see edits in real-time before exporting.</li>
+                        <li>Generates ATS-friendly resumes and exports them as polished PDFs using jsPDF.</li>
+                        <li>Integrated the Gemini API to auto-generate professional summaries from user input in under 2 seconds.</li>
+                        <li>Live preview lets users see every edit reflected instantly before exporting.</li>
                     </ul>
-                    <a href="https://ai-interviewer-six.vercel.app/" target="_blank" class="project-link-button">View Live Demo</a>
+                    <a href="https://resume-builder-xi-bice.vercel.app/" target="_blank" class="project-link-button">View Live Demo</a>
                 </div>
             </div>
+
              <div class="project-card">
-                <img 
+                <img
                     src="SAL.PNG"
-                    alt="Project Preview: Snake and Ladder Game" 
+                    alt="Snake and Ladder Game preview"
                     class="project-image">
                 <div class="project-details">
                     <h3>Snake and Ladder Game</h3>
-                    <p class="project-tools">HTML, CSS, JavaScript</p>
+                    <p class="project-tools">HTML &middot; CSS &middot; JavaScript</p>
                     <ul>
-                        <li>Daya and Jetha are two players</li>
-                        <li>Contains all basic functionalities like snake and ladder game such as comoing 6 will give them extra chance</li>
-                        <li>Implemented animated token movement on the board, including ladders for climbing and
-snakes for setbacks.</li>
-                        <li>Added a winning message display upon reaching the final position.
-</li>
-                        <li> Built using JavaScript.</li>
+                        <li>Two-player board game with animated token movement, ladder climbs, and snake setbacks.</li>
+                        <li>Rolling a 6 grants an extra turn, matching classic board game rules.</li>
+                        <li>Win-state detection with an on-board victory message.</li>
                     </ul>
                     <a href="https://orange-lucila-77.tiiny.site/" target="_blank" class="project-link-button">View Live Demo</a>
                 </div>
             </div>
 
-            
         </section>
 
         <section class="experience-section" id="experience">
             <h2 style="color: inherit;">Experience & Education</h2>
 
             <div class="timeline">
-                
+
                 <div class="timeline-item current-timeline-item">
                     <div class="timeline-content ">
-                        <h3>Frontend Development Intern</h3>
-                        <p class="company">Bluestock Fintech | June 2025 - July 2025</p>
+                        <h3>Frontend Developer</h3>
+                        <p class="company">Coremacasia Technologies | May 2025 &ndash; Present</p>
                         <ul>
-                            <li>Contributed to the development of the IPO Web Application using HTML, CSS, JavaScript,and Bootstrap.</li>
-                            <li>Designed and implemented an Admin Dashboard UI with React and Vite, featuring dynamic IPO listings.</li>
+                            <li>Build responsive React components for Doctorezy, a live doctor-booking platform &mdash; search, scheduling, and auth flows.</li>
+                            <li>Implemented signup, OTP verification, and login with React Hook Form and full validation; 100% test coverage on auth flows.</li>
+                            <li>Cut page load time by 40% and improved Core Web Vitals using Tailwind CSS and rendering optimizations.</li>
+                            <li>Own real-time appointment booking and profile management end-to-end, including state management and API integration.</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <h3>B.Tech. in Computer Science (Final Year)</h3>
-                        <p class="company">Medicaps University, Indore | Aug 2022-June 2026</p>
+                        <h3>Software Development Engineering Intern (Web)</h3>
+                        <p class="company">Bluestock | Jun 2025 &ndash; Jul 2025</p>
+                        <ul>
+                            <li>Contributed to an IPO web application using HTML, CSS, and JavaScript.</li>
+                            <li>Designed and built an Admin Dashboard UI with React and Vite, featuring dynamic IPO listings.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>B.Tech. in Computer Science & Engineering</h3>
+                        <p class="company">Medi-University, Indore | Aug 2022 &ndash; June 2026</p>
+                        <ul>
+                            <li>AWS Cloud Foundations &mdash; Certification</li>
+                            <li>Hacktoberfest 2025 Supercontributor Badge for open-source contributions</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -170,37 +187,37 @@ snakes for setbacks.</li>
         <section class="contact-section">
   <div id="ReachMe" class="contact-container">
     <h2>Get In Touch</h2>
-    <p> Looking for a React developer for your team? Let’s discuss how I can help, or just say hi !</p>
-    
+    <p> Looking for a React developer for your team? Let's discuss how I can help, or just say hi !</p>
+
     <form id="reachme-form" class="contact-form">
       <div class="input-group">
         <input type="text" name="name" required placeholder=" ">
         <label>Your Name</label>
       </div>
-      
+
       <div class="input-group">
         <input type="email" name="email" required placeholder="">
         <label>Email Address</label>
       </div>
-      
+
       <div class="input-group">
         <textarea name="message" rows="5" required placeholder=" "></textarea>
         <label>Your Message</label>
       </div>
-      
+
       <button id="form-submit-btn" type="submit" class="submit-btn">
         <span>Send Message</span>
         <i class="fas fa-paper-plane"></i>
       </button>
       <div id="loader" style="display: none;">Sending...</div>
-  
+
   <div id="success-msg" style="display: none; color: green; margin-top: 10px;">
     ✅ Message sent successfully!
   </div>
     </form>
   </div>
 </section>
-        
+
     </main>
 <script>
 document.getElementById("Email").addEventListener("click", function(e) {
@@ -223,14 +240,13 @@ const loader = document.getElementById('loader');
 const successMsg = document.getElementById('success-msg');
 
 form.addEventListener('submit', (e) => {
-  e.preventDefault(); // This stops the page from redirecting
-  
-  // UI Changes
+  e.preventDefault();
+
   btn.style.display = 'none';
   loader.style.display = 'inline-block';
 
   const formData = new FormData(form);
-  
+
   fetch('https://script.google.com/macros/s/AKfycbz-HvcurPZ1HXrhpDKJdfVDU-F-cEH1vZGnrA5PhHpD_rTD6vJEdhfzZxJ8FxrhWORHmQ/exec', {
     method: 'POST',
     body: formData
@@ -238,7 +254,7 @@ form.addEventListener('submit', (e) => {
   .then(response => {
     loader.style.display = 'none';
     successMsg.style.display = 'block';
-    form.reset(); // Clears the form fields
+    form.reset();
   })
   .catch(error => {
     console.error('Error!', error.message);
@@ -247,7 +263,7 @@ form.addEventListener('submit', (e) => {
     successMsg.textContent = 'Failed to send message. Please try again.';
     successMsg.style.color = 'red';
     successMsg.style.display = 'block';
-    
+
   });
 });
 
@@ -262,10 +278,6 @@ document.getElementById("close-icon").addEventListener("click", function() {
     document.getElementById("close-icon").style.display = "none";
 });
 
-
-
 </script>
 </body>
 </html>
-
-
