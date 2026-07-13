@@ -162,21 +162,52 @@
     .link-buttson:hover {
       transform: scale(1.1);
     }
+    .glass {
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Optional: Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
   </style>
 </head>
 <body>
 
 <!-- Fixed Navbar (glass) -->
 <nav id="navbar" class="fixed top-0 left-0 w-full z-50 py-3 px-4 md:px-8 transition-all duration-300">
-  <div class="max-w-6xl mx-auto glass rounded-2xl px-5 py-2.5 flex items-center justify-between shadow-lg">
+  <div class="max-w-6xl mx-auto glass rounded-2xl px-5 py-2.5 flex items-center justify-between shadow-lg relative">
+    <!-- Logo -->
     <div class="text-lg font-bold tracking-tight text-cyan-400">Jogendar<span class="text-slate-300"> Bairagi</span></div>
-    <div class="flex items-center gap-5 md:gap-8 text-sm font-medium">
+    
+    <!-- Desktop Navigation -->
+    <div class="hidden md:flex items-center gap-5 md:gap-8 text-sm font-medium">
       <a href="#experience" class="hover:text-cyan-400 transition">Experience</a>
       <a href="#projects" class="hover:text-cyan-400 transition">Projects</a>
       <a href="#skills" class="hover:text-cyan-400 transition">Skills</a>
       <a href="#contact" class="hover:text-cyan-400 transition">Contact</a>
-      <a href="https://drive.google.com/drive/folders/1ekEdIDo8eKy7wToCyqZnAPG89cniHY_D?usp=sharing" target="_blank">Resume</a>
+      <a href="https://drive.google.com/drive/folders/1ekEdIDo8eKy7wToCyqZnAPG89cniHY_D?usp=sharing" target="_blank" class="hover:text-cyan-400 transition">Resume</a>
+    </div>
 
+    <!-- Mobile Hamburger Button -->
+    <button id="menuToggle" class="md:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-white/10 transition" aria-label="Toggle menu">
+      <span class="w-6 h-0.5 bg-slate-300 transition-all duration-300"></span>
+      <span class="w-6 h-0.5 bg-slate-300 transition-all duration-300"></span>
+      <span class="w-6 h-0.5 bg-slate-300 transition-all duration-300"></span>
+    </button>
+
+    <!-- Mobile Navigation Menu -->
+    <div id="mobileMenu" class="md:hidden absolute top-full left-0 right-0 mt-3 glass rounded-2xl shadow-lg overflow-hidden transition-all duration-300 max-h-0 opacity-0 invisible">
+      <div class="flex flex-col items-center gap-4 py-6 px-4 text-sm font-medium">
+        <a href="#experience" class="hover:text-cyan-400 transition w-full text-center py-2">Experience</a>
+        <a href="#projects" class="hover:text-cyan-400 transition w-full text-center py-2">Projects</a>
+        <a href="#skills" class="hover:text-cyan-400 transition w-full text-center py-2">Skills</a>
+        <a href="#contact" class="hover:text-cyan-400 transition w-full text-center py-2">Contact</a>
+        <a href="https://drive.google.com/drive/folders/1ekEdIDo8eKy7wToCyqZnAPG89cniHY_D?usp=sharing" target="_blank" class="hover:text-cyan-400 transition w-full text-center py-2">Resume</a>
+      </div>
     </div>
   </div>
 </nav>
@@ -211,12 +242,6 @@
         <span id="email-copied" style="font-size: 14px; color: #34D399; display: none; align-self:center;">✓ Copied!</span>
      
         </div>
-      </div>
-              <button id="Email" class="link-buttson text-cyan-400 hover:text-cyan-300 text-xl flex items-center gap-1 bg-white/5 px-3 py-1 rounded-full border border-white/10">
-          <i class="fas fa-envelope"></i>
-          <span class="text-xs font-medium">Copy</span>
-        </button>
-        <span id="email-copied" style="font-size: 14px; color: #34D399; display: none; align-self:center;">✓ Copied!</span>
       </div>
     </div>
     <!-- decorative badge -->
@@ -494,6 +519,63 @@ form.addEventListener('submit', (e) => {
       });
     });
   })();
+
+  //mobile reponsive navbar 
+  document.addEventListener('DOMContentLoaded', function() {
+  const menuToggle = document.getElementById('menuToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const navbar = document.getElementById('navbar');
+  
+  // Toggle mobile menu
+  menuToggle.addEventListener('click', function(e) {
+    e.stopPropagation();
+    const isOpen = mobileMenu.classList.contains('max-h-96');
+    
+    if (isOpen) {
+      // Close menu
+      mobileMenu.classList.remove('max-h-96', 'opacity-100', 'visible');
+      mobileMenu.classList.add('max-h-0', 'opacity-0', 'invisible');
+      // Reset hamburger to default
+      const spans = menuToggle.querySelectorAll('span');
+      spans.forEach(span => {
+        span.classList.remove('rotate-45', '-translate-y-2', '-rotate-45', 'translate-y-2');
+      });
+    } else {
+      // Open menu
+      mobileMenu.classList.remove('max-h-0', 'opacity-0', 'invisible');
+      mobileMenu.classList.add('max-h-96', 'opacity-100', 'visible');
+      // Animate hamburger to X
+      const spans = menuToggle.querySelectorAll('span');
+      spans[0].classList.add('rotate-45', 'translate-y-2');
+      spans[1].classList.add('opacity-0');
+      spans[2].classList.add('-rotate-45', '-translate-y-2');
+    }
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', function(e) {
+    if (!navbar.contains(e.target)) {
+      mobileMenu.classList.remove('max-h-96', 'opacity-100', 'visible');
+      mobileMenu.classList.add('max-h-0', 'opacity-0', 'invisible');
+      const spans = menuToggle.querySelectorAll('span');
+      spans.forEach(span => {
+        span.classList.remove('rotate-45', '-translate-y-2', '-rotate-45', 'translate-y-2');
+      });
+    }
+  });
+
+  // Close menu when clicking a link
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', function() {
+      mobileMenu.classList.remove('max-h-96', 'opacity-100', 'visible');
+      mobileMenu.classList.add('max-h-0', 'opacity-0', 'invisible');
+      const spans = menuToggle.querySelectorAll('span');
+      spans.forEach(span => {
+        span.classList.remove('rotate-45', '-translate-y-2', '-rotate-45', 'translate-y-2');
+      });
+    });
+  });
+});
 
 </script>
 </body>
