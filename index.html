@@ -1,670 +1,400 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jogendar Bairagi · portfolio</title>
-  <!-- Tailwind via CDN + base layer -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Font Awesome 6 (free) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f5f7">
+  <meta name="description" content="Jogendar Das Bairagi — Web Developer building thoughtful, fast and interactive web experiences.">
+  <title>Jogendar Das Bairagi — Web Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
-    /* ----- custom variables / glassmorphism ----- */
     :root {
-      --bg-dark: #0B0F19;
-      --bg-light: #F8FAFC;
-      --cyan: #06B6D4;
-      --cyan: #8B5CF6;
-      --emerald: #34D399;
-      --slate-800: #1E293B;
-      --slate-700: #334155;
-      --slate-300: #CBD5E1;
+      color-scheme: light;
+      --bg:#f5f5f7; --surface:rgba(255,255,255,.72); --solid:#fff;
+      --text:#1d1d1f; --muted:#6e6e73; --line:rgba(0,0,0,.09);
+      --accent:#0071e3; --accent-soft:rgba(0,113,227,.09);
+      --shadow:0 18px 55px rgba(0,0,0,.07); --nav:rgba(250,250,252,.76);
+      --orb:rgba(0,113,227,.11);
     }
-    * {
-      transition: background-color 0.3s ease, color 0.2s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.25s cubic-bezier(0.2, 0, 0, 1);
+    [data-theme="dark"] {
+      color-scheme:dark; --bg:#08090b; --surface:rgba(27,29,33,.74); --solid:#17191d;
+      --text:#f5f5f7; --muted:#a1a1a6; --line:rgba(255,255,255,.1);
+      --accent:#2997ff; --accent-soft:rgba(41,151,255,.13);
+      --shadow:0 18px 60px rgba(0,0,0,.28); --nav:rgba(15,16,19,.78);
+      --orb:rgba(41,151,255,.13);
     }
-    body {
-      background: var(--bg-dark);
-      color: #E2E8F0;
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      scroll-behavior: smooth;
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:100px}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6;overflow-x:hidden;transition:background .35s,color .35s}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    ::selection{background:var(--accent);color:white}
+    .progress{position:fixed;z-index:1000;top:0;left:0;height:2px;width:0;background:var(--accent)}
+    .ambient{position:fixed;inset:0;pointer-events:none;z-index:-1;overflow:hidden}
+    .ambient:before,.ambient:after{content:"";position:absolute;width:460px;height:460px;border-radius:50%;filter:blur(95px);background:var(--orb);opacity:.8}
+    .ambient:before{top:-220px;right:-130px}.ambient:after{bottom:-260px;left:-180px}
+    .cursor-glow{position:fixed;width:360px;height:360px;border-radius:50%;pointer-events:none;z-index:-1;background:radial-gradient(circle,var(--orb),transparent 68%);transform:translate(-50%,-50%);opacity:.65}
+    .wrap{width:min(1080px,calc(100% - 44px));margin:auto}
+    .nav-wrap{position:fixed;top:18px;left:0;right:0;z-index:100}
+    nav{width:min(900px,calc(100% - 32px));margin:auto;padding:10px 13px 10px 20px;border:1px solid var(--line);border-radius:999px;background:var(--nav);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);display:flex;align-items:center;justify-content:space-between;box-shadow:0 8px 30px rgba(0,0,0,.06)}
+    .brand{font-size:14px;font-weight:750;letter-spacing:-.5px;white-space:nowrap}
+    .brand span{color:var(--accent)}
+    .nav-links{display:flex;align-items:center;gap:27px}
+    .nav-links a{font-size:12px;color:var(--muted);font-weight:600;transition:color .2s}
+    .nav-links a:hover{color:var(--accent)}
+    .nav-actions{display:flex;gap:8px;align-items:center}
+    .icon-btn,.menu-btn{width:36px;height:36px;border:1px solid var(--line);border-radius:50%;background:var(--surface);color:var(--text);cursor:pointer;display:grid;place-items:center;transition:transform .2s,background .2s}
+    .icon-btn:hover,.menu-btn:hover{transform:translateY(-2px);background:var(--accent-soft)}
+    .menu-btn{display:none}
+    .hero{min-height:720px;padding:190px 0 110px;display:flex;align-items:center;position:relative}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;padding:7px 12px;border:1px solid var(--line);border-radius:99px;background:var(--surface);font:11px "DM Mono",monospace;letter-spacing:.04em;color:var(--muted)}
+    .dot{width:7px;height:7px;background:#30c46c;border-radius:50%;box-shadow:0 0 0 4px rgba(48,196,108,.12)}
+    h1{font-size:clamp(48px,8vw,92px);line-height:.99;letter-spacing:-.085em;margin:27px 0 22px;max-width:900px;font-weight:750}
+    .gradient{background:linear-gradient(105deg,var(--accent),#7b61ff 75%);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero-copy{font-size:clamp(16px,2vw,20px);line-height:1.65;color:var(--muted);max-width:620px;margin:0}
+    .hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:34px}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:13px 19px;border-radius:999px;font-size:13px;font-weight:650;border:1px solid var(--line);transition:transform .25s,box-shadow .25s,background .25s}
+    .btn:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+    .btn-primary{background:var(--accent);color:white;border-color:var(--accent)}
+    .btn-quiet{background:var(--surface)}
+    .socials{display:flex;gap:17px;margin-left:9px;color:var(--muted);font-size:18px}
+    .socials a{transition:color .2s,transform .2s}.socials a:hover{color:var(--accent);transform:translateY(-3px)}
+    .hero-meta{display:flex;gap:28px;margin-top:72px;padding-top:22px;border-top:1px solid var(--line);max-width:720px;flex-wrap:wrap}
+    .meta-item{display:flex;flex-direction:column;gap:3px}.meta-item strong{font-size:13px}.meta-item span{font:10px "DM Mono",monospace;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+    .section{padding:88px 0}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:32px}
+    .kicker{font:11px "DM Mono",monospace;color:var(--accent);letter-spacing:.12em;text-transform:uppercase}
+    h2{font-size:clamp(31px,4vw,48px);letter-spacing:-.065em;line-height:1.08;margin:10px 0 0}
+    .section-note{color:var(--muted);font-size:13px;max-width:300px}
+    .about-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+    .panel{background:var(--surface);border:1px solid var(--line);border-radius:25px;padding:30px;box-shadow:var(--shadow);backdrop-filter:blur(16px);transition:transform .3s,border-color .3s}
+    .panel:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--accent) 35%,var(--line))}
+    .about-text{font-size:16px;color:var(--muted);line-height:1.85;margin:15px 0 0}
+    .about-text strong{color:var(--text);font-weight:650}
+    .stack-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+    .chip{padding:8px 11px;border-radius:999px;border:1px solid var(--line);background:var(--bg);font-size:11px;color:var(--muted);font-weight:600}
+    .stack-block+.stack-block{margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
+    .stack-title{font:10px "DM Mono",monospace;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+    .timeline{display:grid;gap:14px}
+    .job{display:grid;grid-template-columns:170px 1fr;gap:25px}
+    .job-date{font:11px "DM Mono",monospace;color:var(--muted);padding-top:7px}
+    .job-body{border-left:1px solid var(--line);padding:0 0 28px 25px;position:relative}
+    .job-body:before{content:"";position:absolute;left:-5px;top:8px;width:9px;height:9px;background:var(--accent);border-radius:50%;box-shadow:0 0 0 5px var(--accent-soft)}
+    .job h3{font-size:19px;letter-spacing:-.04em;margin:0}
+    .job-role{font-size:12px;color:var(--accent);font-weight:650;margin:5px 0 12px}
+    .job ul{margin:0;padding-left:18px;color:var(--muted);font-size:13px}.job li{padding:3px 0}
+    .project-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:17px}
+    .project{padding:0;overflow:hidden}
+    .project-visual{height:190px;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--accent-soft),rgba(123,97,255,.09));display:grid;place-items:center;border-bottom:1px solid var(--line)}
+   .project-visual:after{width:290px;height:290px}
+    .project:hover .project-visual:before{transform:scale(1.2)}.project:hover .project-visual:after{transform:scale(1.12)}
+    .visual-icon{font-size:48px;color:var(--accent);position:relative;z-index:1}
+    .visual-label{font:10px "DM Mono",monospace;color:var(--muted);letter-spacing:.12em;text-transform:uppercase}
+    .project-content{padding:24px}
+    .project-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+    .project h3{font-size:21px;letter-spacing:-.05em;margin:0}
+    .project-links{display:flex;gap:12px;color:var(--muted)}
+    .project-links a:hover{color:var(--accent)}
+    .project p{font-size:13px;color:var(--muted);line-height:1.75;margin:12px 0 17px}
+    .project-tags{display:flex;gap:7px;flex-wrap:wrap}
+    .project-tags span{font:10px "DM Mono",monospace;padding:6px 8px;background:var(--accent-soft);color:var(--accent);border-radius:6px}
+    .skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .skill{padding:18px;border:1px solid var(--line);border-radius:16px;background:var(--surface);font-size:12px;font-weight:650;display:flex;align-items:center;gap:11px;transition:transform .25s,border-color .25s}
+    .skill i{font-size:17px;color:var(--accent);width:20px;text-align:center}.skill:hover{transform:translateY(-4px);border-color:var(--accent)}
+    .extras{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:15px}
+    .extra{display:flex;align-items:center;gap:15px}.extra i{font-size:22px;color:var(--accent)}.extra strong{font-size:13px;display:block}.extra span{font-size:11px;color:var(--muted)}
+    .contact-panel{padding:clamp(28px,5vw,55px);text-align:center;position:relative;overflow:hidden}
+    .contact-panel:before{content:"";position:absolute;width:300px;height:300px;border-radius:50%;background:var(--orb);filter:blur(65px);top:-210px;left:calc(50% - 150px)}
+    .contact-panel>*{position:relative}
+    .contact-panel h2{max-width:600px;margin:12px auto}
+    .contact-panel p{color:var(--muted);font-size:14px;max-width:470px;margin:14px auto 25px}
+    .email-link{font-size:clamp(16px,3vw,23px);font-weight:650;letter-spacing:-.04em;color:var(--accent);display:inline-block;margin-bottom:24px}
+    .contact-form{width:min(100%,560px);margin:30px auto 0;text-align:left}
+    .input-group{position:relative;margin:0 0 16px}
+    .input-group input,.input-group textarea{display:block;width:100%;padding:17px 16px 12px;border:1px solid var(--line);border-radius:14px;background:var(--bg);color:var(--text);font:13px Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;outline:none;transition:border-color .2s,box-shadow .2s}
+    .input-group input{height:54px}
+    .input-group textarea{min-height:132px;resize:vertical;padding-top:22px;line-height:1.6}
+    .input-group input:focus,.input-group textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+    .input-group label{position:absolute;left:16px;top:16px;color:var(--muted);font-size:12px;pointer-events:none;transition:all .18s ease;background:var(--bg);padding:0 4px}
+    .input-group textarea+label{top:19px}
+    .input-group input:focus+label,.input-group input:not(:placeholder-shown)+label,.input-group textarea:focus+label,.input-group textarea:not(:placeholder-shown)+label{top:-7px;left:12px;font-size:10px;color:var(--accent)}
+    .submit-btn{width:100%;justify-content:center;cursor:pointer}
+    .submit-btn:disabled{opacity:.65;cursor:wait;transform:none}
+    .form-loader,.form-feedback{display:none;margin-top:14px;text-align:center;font-size:12px}
+    .form-loader{color:var(--accent)}
+    .form-feedback.success{display:block;color:#16803d}
+    .form-feedback.error{display:block;color:#dc2626}
+    [data-theme="dark"] .form-feedback.success{color:#6ee7a0}
+    [data-theme="dark"] .form-feedback.error{color:#fca5a5}
+    footer{padding:28px 0 42px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:15px;color:var(--muted);font:10px "DM Mono",monospace;text-transform:uppercase;letter-spacing:.08em}
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .75s ease,transform .75s cubic-bezier(.2,.7,.2,1)}
+    .reveal.in{opacity:1;transform:translateY(0)}
+    @media(max-width:760px){
+      .wrap{width:min(100% - 32px,600px)}.nav-wrap{top:10px}.nav-links{display:none;position:absolute;top:58px;left:0;right:0;padding:17px;background:var(--nav);border:1px solid var(--line);border-radius:20px;backdrop-filter:blur(20px);flex-direction:column;gap:17px;align-items:stretch}.nav-links.open{display:flex}.nav-links a{font-size:14px;padding:4px 8px}.menu-btn{display:grid}
+      .hero{min-height:auto;padding:155px 0 75px}h1{font-size:clamp(48px,13vw,76px)}.hero-meta{margin-top:48px;gap:20px}.section{padding:65px 0}.section-head{align-items:start;flex-direction:column}.about-grid{grid-template-columns:1fr}.project-grid{grid-template-columns:1fr}.skills-grid{grid-template-columns:repeat(2,1fr)}.job{grid-template-columns:1fr;gap:8px}.job-date{padding-left:25px}.job-body{padding-bottom:24px}.extras{grid-template-columns:1fr}
     }
-    .light body {
-      background: var(--bg-light);
-      color: #0B0F19;
-    }
-    /* glassmorphism base */
-    .glass {
-      background: rgba(15, 23, 42, 0.55);
-      backdrop-filter: blur(12px) saturate(180%);
-      -webkit-backdrop-filter: blur(12px) saturate(180%);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-    }
-    .light .glass {
-      background: rgba(255, 255, 255, 0.65);
-      border: 1px solid rgba(0, 0, 0, 0.06);
-    }
-    .glass-card {
-      background: rgba(15, 23, 42, 0.35);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-    .light .glass-card {
-      background: rgba(255, 255, 255, 0.5);
-      border: 1px solid rgba(0, 0, 0, 0.05);
-    }
-    /* cyan glow */
-    .glow-cyan {
-      box-shadow: 0 0 20px rgba(6, 182, 212, 0.15);
-    }
-    .hover-glow:hover {
-      box-shadow: 0 0 30px rgba(6, 182, 212, 0.2);
-      border-color: #06B6D4;
-      transform: translateY(-6px);
-    }
-    /* scroll animations */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    .fade-up.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    /* timeline line */
-    .timeline-line {
-      background: linear-gradient(to bottom, #06B6D4, #8B5CF6, #34D399);
-      width: 2px;
-    }
-    /* custom scroll */
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: #0B0F19; }
-    .light ::-webkit-scrollbar-track { background: #F1F5F9; }
-    ::-webkit-scrollbar-thumb { background: #06B6D4; border-radius: 20px; }
-
-    /* bio style */
-    .bio {
-      font-size: 1.05rem;
-      line-height: 1.7;
-      color: #CBD5E1;
-    }
-    .light .bio {
-      color: #334155;
-    }
-
-    /* contact form */
-    .input-group {
-      position: relative;
-      margin-bottom: 1.5rem;
-    }
-    .input-group input, .input-group textarea {
-      width: 100%;
-      padding: 0.9rem 1rem 0.4rem;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 12px;
-      color: #E2E8F0;
-      font-size: 0.95rem;
-      outline: none;
-      transition: border-color 0.3s;
-    }
-    .light .input-group input, .light .input-group textarea {
-      background: rgba(0,0,0,0.03);
-      color: #0B0F19;
-      border-color: rgba(0,0,0,0.08);
-    }
-    .input-group input:focus, .input-group textarea:focus {
-      border-color: #06B6D4;
-    }
-    .input-group label {
-      position: absolute;
-      left: 1rem;
-      top: 0.7rem;
-      color: #94A3B8;
-      font-size: 0.85rem;
-      pointer-events: none;
-      transition: all 0.2s;
-    }
-    .input-group input:focus ~ label,
-    .input-group input:not(:placeholder-shown) ~ label,
-    .input-group textarea:focus ~ label,
-    .input-group textarea:not(:placeholder-shown) ~ label {
-      top: -0.3rem;
-      font-size: 0.7rem;
-      color: #06B6D4;
-    }
-    .submit-btn {
-      background: #06B6D4;
-      border: none;
-      padding: 0.8rem 2rem;
-      border-radius: 40px;
-      font-weight: 600;
-      color: #0B0F19;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      cursor: pointer;
-      transition: all 0.25s;
-    }
-    .submit-btn:hover {
-      background: #0891B2;
-      transform: scale(1.02);
-    }
-    .light .submit-btn {
-      color: #0B0F19;
-    }
-    .link-buttson {
-      display: inline-block;
-      transition: transform 0.2s;
-    }
-    .link-buttson:hover {
-      transform: scale(1.1);
-    }
-    .glass {
-  background: rgba(15, 23, 42, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-/* Optional: Smooth scroll behavior */
-html {
-  scroll-behavior: smooth;
-}
+    @media(max-width:420px){.socials{margin-left:0}.hero-actions{gap:10px}.btn{padding:12px 15px}.skills-grid{gap:8px}.skill{padding:13px 10px;font-size:11px}.panel{padding:22px}footer{flex-direction:column}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
   </style>
 </head>
 <body>
-
-<!-- Fixed Navbar (glass) -->
-<nav id="navbar" class="fixed top-0 left-0 w-full z-50 py-3 px-4 md:px-8 transition-all duration-300">
-  <div class="max-w-6xl mx-auto glass rounded-2xl px-5 py-2.5 flex items-center justify-between shadow-lg relative">
-    <!-- Logo -->
-    <div class="text-lg font-bold tracking-tight text-cyan-400">Jogendar<span class="text-slate-300"> Bairagi</span></div>
-    
-    <!-- Desktop Navigation -->
-    <div class="hidden md:flex items-center gap-5 md:gap-8 text-sm font-medium">
-      <a href="#experience" class="hover:text-cyan-400 transition">Experience</a>
-      <a href="#projects" class="hover:text-cyan-400 transition">Projects</a>
-      <a href="#skills" class="hover:text-cyan-400 transition">Skills</a>
-      <a href="#contact" class="hover:text-cyan-400 transition">Contact</a>
-      <a href="https://drive.google.com/drive/folders/1ekEdIDo8eKy7wToCyqZnAPG89cniHY_D?usp=sharing" target="_blank" class="hover:text-cyan-400 transition">Resume</a>
-    </div>
-
-    <!-- Mobile Hamburger Button -->
-    <button id="menuToggle" class="md:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-white/10 transition" aria-label="Toggle menu">
-      <span class="w-6 h-0.5 bg-slate-300 transition-all duration-300"></span>
-      <span class="w-6 h-0.5 bg-slate-300 transition-all duration-300"></span>
-      <span class="w-6 h-0.5 bg-slate-300 transition-all duration-300"></span>
-    </button>
-
-    <!-- Mobile Navigation Menu -->
-    <div id="mobileMenu" class="md:hidden absolute top-full left-0 right-0 mt-3 glass rounded-2xl shadow-lg overflow-hidden transition-all duration-300 max-h-0 opacity-0 invisible">
-      <div class="flex flex-col items-center gap-4 py-6 px-4 text-sm font-medium">
-        <a href="#experience" class="hover:text-cyan-400 transition w-full text-center py-2">Experience</a>
-        <a href="#projects" class="hover:text-cyan-400 transition w-full text-center py-2">Projects</a>
-        <a href="#skills" class="hover:text-cyan-400 transition w-full text-center py-2">Skills</a>
-        <a href="#contact" class="hover:text-cyan-400 transition w-full text-center py-2">Contact</a>
-        <a href="https://drive.google.com/drive/folders/1ekEdIDo8eKy7wToCyqZnAPG89cniHY_D?usp=sharing" target="_blank" class="hover:text-cyan-400 transition w-full text-center py-2">Resume</a>
+  <div class="progress" id="progress"></div><div class="ambient"></div><div class="cursor-glow" id="cursorGlow"></div>
+  <div class="nav-wrap">
+    <nav aria-label="Main navigation">
+      <a class="brand" href="#home">JOGENDAR BAIRAGI</a>
+      <div class="nav-links" id="navLinks">
+        <a href="#about">About</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
+        <a href="https://drive.google.com/drive/folders/1ekEdIDo8eKy7wToCyqZnAPG89cniHY_D" target="_blank" rel="noopener noreferrer">Resume ↗</a>
       </div>
-    </div>
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeToggle" aria-label="Switch to dark mode" title="Toggle appearance"><i class="fa-regular fa-moon"></i></button>
+        <button class="menu-btn" id="menuToggle" aria-label="Open navigation" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </nav>
   </div>
-</nav>
 
-<main class="max-w-6xl mx-auto px-4 md:px-6 pt-24 pb-16 space-y-28">
-
-  <!-- HERO -->
-  <section class="relative flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
-    <div class="flex-1 space-y-6">
-      <div class="fade-up visible" style="transition-delay:0.1s;">
-        <span class="inline-block px-4 py-1 rounded-full text-xs font-semibold tracking-wider uppercase bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">Front-end specialist</span>
-      </div>
-      <h1 class="fade-up visible text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight" style="transition-delay:0.2s;">
-        <span class="text-white light:text-slate-900">Jogendar Das Bairagi</span>
-        <span class="text-cyan-400"> — I build interactive interfaces from scratch.</span>
-      </h1>
-      <p class="fade-up visible text-slate-300 light:text-slate-600 text-lg max-w-xl" style="transition-delay:0.3s;">
-        Expert in <strong class="text-cyan-300 light:text-cyan-600">React 18</strong>, TypeScript, and Firebase. 
-        Crafting resilient, high-scale user experiences with clean code.
-      </p>
-      <div class="fade-up visible flex flex-wrap items-center gap-5 pt-2" style="transition-delay:0.4s;">
-        <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3 bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-semibold rounded-full transition shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40">
-          <i class="fas fa-paper-plane"></i> Get In Touch
-        </a>
-        <div class="flex gap-4 text-2xl text-slate-200 light:text-slate-500">
-          <a href="https://github.com/Jogendar-Bairagi/" target="_blank" class="hover:text-cyan-400 transition"><i class="fab fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/jogendar-bairagi/" target="_blank" class="hover:text-cyan-400 transition"><i class="fab fa-linkedin-in"></i></a>
-          <a href="https://wa.me/+918989643599" target="_blank" class="hover:text-cyan-400 transition"><i class="fab fa-whatsapp"></i></a>
-        <button id="Email" class="link-button hover:text-cyan-400 flex items-center border-none">
-          <i class="fas fa-envelope  "></i>
-        </button>
-        <span id="email-copied" style="font-size: 14px; color: #34D399; display: none; align-self:center;">✓ Copied!</span>
-     
+  <main class="wrap" id="home">
+    <section class="hero">
+      <div>
+        <div class="eyebrow"><span class="dot"></span> WEB DEVELOPER <span>·</span> INDORE, INDIA</div>
+        <h1>Thoughtful code.<br><span class="gradient">Beautifully built</span><br>experiences.</h1>
+        <p class="hero-copy">I'm <strong>Jogendar Das Bairagi</strong>, a web developer focused on building clean, responsive interfaces and useful products with React, JavaScript and modern web technologies.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">Explore my work <i class="fa-solid fa-arrow-down"></i></a>
+          <a class="btn btn-quiet" href="mailto:jogendar8520@gmail.com">Let's talk <i class="fa-regular fa-paper-plane"></i></a>
+          <div class="socials">
+            <a href="https://github.com/Jogendar-Bairagi/" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="mailto:jogendar@gmail.com" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/jogendar-bairagi/" aria-label="linkedin"><i class="fa-brands fa-linkedin"></i></a>
+          </div>
+        </div>
+        <div class="hero-meta">
+          <div class="meta-item"><strong>React & JavaScript</strong><span>Core stack</span></div>
+          <div class="meta-item"><strong>Product-focused</strong><span>Approach</span></div>
+          <div class="meta-item"><strong>Frontend → Full stack</strong><span>Growing scope</span></div>
         </div>
       </div>
-    </div>
     </section>
-<section class="fade-up glass-card p-6 md:p-10 rounded-3xl border border-white/5 flex flex-col lg:flex-row items-center justify-between gap-8 md:gap-12">
-  
-  <!-- Bio Description -->
-  <div class="flex-1 space-y-4 max-w-xl">
-    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-medium">
-      <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span> Frontend & Full-Stack Capabilities
-    </div>
-    <h3 class="text-2xl md:text-3xl font-bold text-white light:text-slate-800 leading-tight">
-      Building modern web apps with speed & precision.
-    </h3>
-    <p class="text-sm md:text-base text-slate-300 light:text-slate-600 leading-relaxed">
-      Frontend developer building production React applications for a live doctor-booking platform — from authentication flows to real-time appointment booking. Comfortable moving across the stack with <span class="text-white font-medium">Node.js</span> and <span class="text-white font-medium">REST APIs</span> when a feature calls for it.
-    </p>
-    <p class="text-sm md:text-base text-slate-300 light:text-slate-600 leading-relaxed">
-      I care about interfaces that stay fast even when the underlying data doesn't, and about shipping complete features end-to-end rather than isolated tickets.
-    </p>
-  </div>
 
-  <!-- Skill Metrics Badge Card -->
-  <div class="w-full lg:w-auto flex-1 max-w-md">
-    <div class="glass-card rounded-3xl p-6 border border-cyan-500/20 glow-cyan bg-slate-900/40 backdrop-blur-md">
-      <div class="space-y-4">
-        
-        <!-- Category 1: Frontend Core -->
-        <div>
-          <p class="text-xs font-semibold uppercase tracking-wider text-cyan-400 mb-2 flex items-center gap-1.5">
-            <i class="fas fa-code text-xs"></i> Frontend Core
-          </p>
-          <div class="flex flex-wrap gap-2">
-            <span class="px-2.5 py-1 text-xs rounded-lg bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 font-medium">React 18</span>
-            <span class="px-2.5 py-1 text-xs rounded-lg bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 font-medium">JavaScript (ES6+)</span>
-            <span class="px-2.5 py-1 text-xs rounded-lg bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 font-medium">TypeScript</span>
-            <span class="px-2.5 py-1 text-xs rounded-lg bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 font-medium">HTML5 / CSS3</span>
+    <section class="section" id="about">
+      <div class="section-head reveal"><div><div class="kicker">01 / A little about me</div><h2>Build with purpose.</h2></div><p class="section-note">Good interfaces should feel effortless, perform reliably and solve real problems.</p></div>
+      <div class="about-grid">
+        <article class="panel reveal">
+          <div class="kicker">The developer</div>
+          <p class="about-text">I build web applications with a focus on <strong>usable interfaces, maintainable components and practical problem-solving</strong>. My experience includes working on a live doctor-booking platform, implementing registration and authentication flows, and integrating REST APIs.</p>
+          <p class="about-text">I also work across the stack with Node.js and databases when a feature needs it. I enjoy turning product requirements into clear, responsive experiences.</p>
+          <p class="about-text">I also have hands-on experience deploying React applications on AWS S3 and automating deployment workflows using GitHub Actions.</p>
+        </article>
+        <article class="panel reveal">
+          <div class="stack-block"><div class="stack-title">Frontend</div><div class="stack-list"><span class="chip">React</span><span class="chip">JavaScript ES6+</span><span class="chip">HTML5</span><span class="chip">CSS3</span><span class="chip">Tailwind CSS</span><span class="chip">Redux Toolkit</span></div></div>
+          <div class="stack-block"><div class="stack-title">Backend & tools</div><div class="stack-list"><span class="chip">Node.js</span><span class="chip">Express.js</span><span class="chip">MongoDB</span><span class="chip">MySQL</span><span class="chip">Firebase</span><span class="chip">REST APIs</span><span class="chip">Git & GitHub</span></div></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="section-head reveal"><div><div class="kicker">02 / Where I've worked</div><h2>Experience.</h2></div></div>
+      <div class="timeline">
+        <article class="job reveal">
+          <div class="job-date">MAY 2026 — JULY 2026</div>
+          <div class="job-body"><h3>Coremacasia Technologies</h3><div class="job-role">Frontend Developer · DoctorEzy</div><ul><li>Developed multi-step doctor registration flows using React and React Hook Form.</li><li>Worked on OTP authentication, draft registration and REST API integrations.</li><li>Improved client-side validation and reusable components for doctor onboarding.</li></ul></div>
+        </article>
+        <article class="job reveal">
+          <div class="job-date">JUN 2025 — JUL 2025</div>
+          <div class="job-body"><h3>Bluestock</h3><div class="job-role">SDE Intern · Web Development (Virtual)</div><ul><li>Built an IPO web application using HTML, CSS and JavaScript.</li><li>Developed an admin dashboard interface with React and Vite for dynamic IPO listings.</li><li>Worked on frontend components and usability improvements.</li></ul></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="section-head reveal"><div><div class="kicker">03 / Selected work</div><h2>Things I've built.</h2></div><p class="section-note">A selection of applications, experiments and product work.</p></div>
+      <div class="project-grid">
+        <article class="panel project reveal">
+          <div class="project-visual"><img src="doctorezy.PNG" style="height:100%; width: 100%"></div>
+          <div class="project-content"><span class="visual-label">01 / Health tech</span><div class="project-top"><h3>DoctorEzy</h3><div class="project-links"><a href="https://doctorezy.in/" target="_blank" rel="noopener noreferrer" aria-label="Open DoctorEzy"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></div></div><p>A doctor appointment platform. Contributed to registration, authentication, doctor onboarding, profile management and API-connected interfaces.</p><div class="project-tags"><span>React</span><span>Redux Toolkit</span><span>REST API</span><span>Tailwind</span></div></div>
+        </article>
+         <article class="panel project reveal">
+          <div class="project-visual"><img src="LABTS.PNG" style="height:100%; width: 100%"></div>
+          <div class="project-content"><span class="visual-label">02 / Live location</span><div class="project-top"><h3>Local Bus Tracking</h3><div class="project-links"><a href="https://driver-dashboard-six.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open bus tracking demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></div></div><p>A real-time bus tracking experience with separate driver and passenger interfaces, live location updates and map-based tracking.</p><div class="project-tags"><span>React</span><span>Firebase</span><span>Leaflet</span></div></div>
+        </article>
+        <article class="panel project reveal">
+          <div class="project-visual"><i class="fa-solid fa-wand-magic-sparkles visual-icon"></i></div>
+          <div class="project-content"><span class="visual-label">03 / Generative AI</span><div class="project-top"><h3>AI Resume Builder</h3></div><p>An AI-assisted resume builder that generates professional summaries, supports live editing and exports ATS-friendly resumes as PDF.</p><div class="project-tags"><span>React</span><span>Gemini API</span><span>jsPDF</span></div></div>
+        </article>
+         <article class="panel project reveal">
+          <div class="project-visual"><i class="fa-solid fa-wand-magic-sparkles visual-icon"></i></div>
+          <div class="project-content"><span class="visual-label">Deployment & CI/CD using Github Actions</span><div class="project-top"><h3>React Portfolio on AWS S3 Bucket</h3></div><p>Deployed a React application on Amazon S3 and configured an automated deployment pipeline using GitHub Actions.
+- Configured Amazon S3 for static website hosting.
+- Created a GitHub Actions workflow to automate deployments.
+- Configured AWS credentials and deployment permissions.
+- Automated application updates whenever changes are pushed to GitHub.</p><div class="project-tags"><span>React</span><span>AWS S3, Amplify</span><span>CI/CD</span><span>Github Action</span></div></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="section-head reveal"><div><div class="kicker">04 / Tools of the trade</div></div></div>
+      <h4 style="margin-bottom:0px;">Frontend</h4>
+      <hr />
+      <div class="skills-grid reveal">
+
+        <div class="skill"><i class="fa-brands fa-react"></i>React</div><div class="skill"><i class="fa-brands fa-js"></i>JavaScript</div>
+        <div class="skill"><i class="fa-brands fa-html5"></i>HTML5</div><div class="skill"><i class="fa-brands fa-css3-alt"></i>CSS3</div>
+        <div class="skill"><i class="fa-solid fa-wind"></i>Tailwind CSS</div><div class="skill"><i class="fa-solid fa-layer-group"></i>Redux Toolkit</div>
+        </div>
+        <h4 style="margin-bottom:0px;">Backend</h4><hr/>
+       <div class="skills-grid reveal">
+        <div class="skill"><i class="fa-brands fa-node-js"></i>Node.js</div><div class="skill"><i class="fa-solid fa-server"></i>Express.js</div>
+        <div class="skill"><i class="fa-solid fa-database"></i>MongoDB</div><div class="skill"><i class="fa-solid fa-table"></i>MySQL</div>
+        <div class="skill"><i class="fa-solid fa-fire"></i>Firebase</div><div class="skill"><i class="fa-brands fa-git-alt"></i>Git & GitHub</div>
+       </div>
+        <h4 style="margin-bottom:0px;">Deployment</h4><hr/>
+        <div class="skills-grid reveal">
+        <div class="skill"><i class="fa-brands fa-aws"></i>AWS S3</div><div class="skill"><i class="fa-brands fa-github"></i>GitHub Actions</div>
+<div class="skill"><i class="fa-solid fa-arrows-spin"></i>CI/CD</div><div class="skill"><i class="fa-solid fa-globe"></i>Static Website Hosting</div>
+<div class="skill"><i class="fa-solid fa-caret-up"></i>Vercel</div><div class="skill"><i class="fa-solid fa-server"></i>Render</div>
+        </div>
+         <h4 style="margin-bottom:0px;">Tools & Technologies</h4><hr/>
+        <div class="skills-grid reveal">
+        <div class="skill"><i class="fa-solid fa-paper-plane"></i>Postman</div>
+        <div class="skill"><i class="fa-solid fa-bolt"></i>Vite</div>
+        <div class="skill"><i class="fa-brands fa-figma"></i>Figma</div>
+    </div></div>
+      <h4 style="margin-bottom:0px;">Certifications</h4><hr/>
+      <div class="extras">
+        <div class="panel extra reveal"><i class="fa-solid fa-certificate"></i><div><strong>AWS Cloud Foundation</strong><span>Certification · 2025</span></div></div>
+        <div class="panel extra reveal"><i class="fa-solid fa-award"></i><div><strong>Hacktoberfest 2025</strong><span>Supercontributor Badge</span></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="panel contact-panel reveal">
+        <div class="kicker">05 / What's next?</div>
+        <h2>Have a good project in mind?<br><span class="gradient">Let's make it real.</span></h2>
+        <p>I'm open to web development opportunities and conversations about building useful digital products.</p>
+        <a class="email-link" href="mailto:jogendar8520@gmail.com">jogendar8520@gmail.com</a>
+        <form id="reachme-form" class="contact-form">
+          <div class="input-group">
+            <input id="contact-name" type="text" name="name" required placeholder=" " autocomplete="name">
+            <label for="contact-name">Your Name</label>
           </div>
-        </div>
-
-        <!-- Category 2: Styling & UI -->
-        <div>
-          <p class="text-xs font-semibold uppercase tracking-wider text-violet-400 mb-2 flex items-center gap-1.5">
-            <i class="fas fa-paint-brush text-xs"></i> Styling & UI
-          </p>
-          <div class="flex flex-wrap gap-2">
-            <span class="px-2.5 py-1 text-xs rounded-lg bg-violet-500/10 text-violet-300 border border-violet-500/20 font-medium">Tailwind CSS</span>
-            <span class="px-2.5 py-1 text-xs rounded-lg bg-violet-500/10 text-violet-300 border border-violet-500/20 font-medium">Framer Motion</span>
-            <span class="px-2.5 py-1 text-xs rounded-lg bg-violet-500/10 text-violet-300 border border-violet-500/20 font-medium">Redux Toolkit</span>
+          <div class="input-group">
+            <input id="contact-email" type="email" name="email" required placeholder=" " autocomplete="email">
+            <label for="contact-email">Email Address</label>
           </div>
-        </div>
-
-        <!-- Category 3: Backend & Database -->
-        <div>
-          <p class="text-xs font-semibold uppercase tracking-wider text-emerald-400 mb-2 flex items-center gap-1.5">
-            <i class="fas fa-server text-xs"></i> Backend & DB 
-          </p>
-          <div class="flex flex-wrap gap-2">
-            <span class="px-2.5 py-1 text-xs rounded-lg bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 font-medium">Node.js</span>
-            <span class="px-2.5 py-1 text-xs rounded-lg bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 font-medium">Express.js</span>
-            <span class="px-2.5 py-1 text-xs rounded-lg bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 font-medium">SQL / MySQL</span>
-            <span class="px-2.5 py-1 text-xs rounded-lg bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 font-medium">MongoDB</span>
+          <div class="input-group">
+            <textarea id="contact-message" name="message" rows="4" required placeholder=" "></textarea>
+            <label for="contact-message">Your Message</label>
           </div>
-        </div>
-
-        <!-- Category 4: Cloud & Tools -->
-        <div>
-          <p class="text-xs font-semibold uppercase tracking-wider text-amber-400 mb-2 flex items-center gap-1.5">
-            <i class="fas fa-bolt text-xs"></i> Services & Tools
-          </p>
-          <div class="flex flex-wrap gap-2">
-            <span class="px-2.5 py-1 text-xs rounded-lg bg-amber-500/10 text-amber-300 border border-amber-500/20 font-medium">Firebase</span>
-            <span class="px-2.5 py-1 text-xs rounded-lg bg-amber-500/10 text-amber-300 border border-amber-500/20 font-medium">REST APIs</span>
-            <span class="px-2.5 py-1 text-xs rounded-lg bg-amber-500/10 text-amber-300 border border-amber-500/20 font-medium">Git / GitHub</span>
-          </div>
-        </div>
-
+          <button id="form-submit-btn" type="submit" class="btn btn-primary submit-btn">
+            <span id="submit-label">Send Message</span>
+            <i id="submit-icon" class="fa-regular fa-paper-plane"></i>
+          </button>
+          <div id="loader" class="form-loader" role="status" aria-live="polite"><i class="fa-solid fa-spinner fa-spin"></i> Sending...</div>
+          <div id="success-msg" class="form-feedback" role="status" aria-live="polite"></div>
+        </form>
       </div>
-    </div>
-  </div>
+    </section>
 
-</section>
+    <footer><span>© <span id="year"></span> Jogendar Das Bairagi</span><span>Designed with care · Built for the web</span><a href="#home">Back to top ↑</a></footer>
+  </main>
+  <script>
+    const root = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+    const themeMeta = document.querySelector('meta[name="theme-color"]');
+    const savedTheme = localStorage.getItem('portfolio-theme');
+    function setTheme(theme) {
+      root.dataset.theme = theme;
+      localStorage.setItem('portfolio-theme', theme);
+      const dark = theme === 'dark';
+      themeToggle.innerHTML = dark ? '<i class="fa-regular fa-sun"></i>' : '<i class="fa-regular fa-moon"></i>';
+      themeToggle.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+      themeMeta.content = dark ? '#08090b' : '#f5f5f7';
+    }
+    setTheme(savedTheme || 'light');
+    themeToggle.addEventListener('click', () => setTheme(root.dataset.theme === 'dark' ? 'light' : 'dark'));
 
-  <!-- EXPERIENCE TIMELINE -->
-  <section id="experience" class="scroll-mt-20">
-    <div class="flex items-center gap-3 mb-10">
-      <i class="fas fa-briefcase text-cyan-400 text-2xl"></i>
-      <h2 class="text-3xl md:text-4xl font-bold text-white light:text-slate-800">Experience Timeline</h2>
-    </div>
-    <div class="relative flex flex-col gap-10">
-      <!-- vertical line -->
-      <div class="absolute left-5 top-6 bottom-0 timeline-line hidden md:block"></div>
+    // Contact form submission — keeps the original Google Apps Script endpoint.
+    const contactForm = document.getElementById('reachme-form');
+    const formButton = document.getElementById('form-submit-btn');
+    const formLoader = document.getElementById('loader');
+    const successMsg = document.getElementById('success-msg');
+    const submitLabel = document.getElementById('submit-label');
+    const submitIcon = document.getElementById('submit-icon');
 
-      <!-- item 1 -->
-      <div class="fade-up relative pl-10 md:pl-16">
-        <div class="absolute left-0 top-2 w-4 h-4 rounded-full bg-cyan-400 border-2 border-slate-900 shadow-glow hidden md:block"></div>
-        <div class="glass-card p-6 rounded-2xl hover-glow transition border border-white/5">
-          <div class="flex flex-wrap items-start justify-between gap-2">
-            <h3 class="text-xl font-bold text-white light:text-slate-800">Coremacasia Technologies</h3>
-            <span class="text-sm px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">May 2026 – July2026</span>
-          </div>
-          <p class="text-cyan-300/80 text-sm font-medium">Frontend Developer · React + TypeScript</p>
-          <ul class="mt-3 space-y-1.5 text-slate-300 light:text-slate-600 text-sm list-disc list-inside marker:text-cyan-400">
-            <li>Developed DoctorEazy multi-step registration with Tailwind CSS & React Hook Form.</li>
-            <li>Integrated OTP auth, draft registration, REST APIs for profile/resume flows.</li>
-            <li>Optimized API interactions, client-side validation, and production-ready components.</li>
-            <li><span class="text-cyan-300 font-medium">4+ core features</span> · scalable onboarding.</li>
-          </ul>
-        </div>
-      </div>
+    contactForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!contactForm.reportValidity()) return;
 
-      <!-- item 2 -->
-      <div class="fade-up relative pl-10 md:pl-16">
-        <div class="absolute left-0 top-2 w-4 h-4 rounded-full bg-cyan-400 border-2 border-slate-900 hidden md:block"></div>
-        <div class="glass-card p-6 rounded-2xl hover-glow transition border border-white/5">
-          <div class="flex flex-wrap items-start justify-between gap-2">
-            <h3 class="text-xl font-bold text-white light:text-slate-800">Bluestock · SDE Intern</h3>
-            <span class="text-sm px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">Jun 2025 – Jul 2025</span>
-          </div>
-          <p class="text-cyan-300/80 text-sm font-medium">Web Development · Virtual</p>
-          <ul class="mt-3 space-y-1.5 text-slate-300 light:text-slate-600 text-sm list-disc list-inside marker:text-cyan-400">
-            <li>Built IPO Web Application using HTML, CSS, JavaScript.</li>
-            <li>Designed Admin Dashboard UI with React + Vite (dynamic IPO listings).</li>
-            <li>Optimized front-end components for performance & UX.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+      formButton.disabled = true;
+    //   submitLabel.textContent = 'Sending...';
+      submitIcon.className = 'fa-solid fa-spinner fa-spin';
+      formLoader.style.display = 'block';
+      successMsg.style.display = 'none';
+      successMsg.className = 'form-feedback';
+      successMsg.textContent = '';
 
-  <!-- PROJECT SHOWCASE (2-col grid) -->
- <section id="projects" class="scroll-mt-20">
-  <div class="flex items-center gap-3 mb-10">
-    <i class="fas fa-folder-open text-cyan-400 text-2xl"></i>
-    <h2 class="text-3xl md:text-4xl font-bold text-white light:text-slate-800">Project Showcase</h2>
-  </div>
-
-  <!-- Projects Grid -->
-  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-    <!-- Card 1: Local Bus Tracking -->
-    <div class="fade-up glass-card p-6 rounded-2xl hover-glow transition border border-white/5 flex flex-col">
-      <div class="flex items-center gap-3 mb-3">
-        <i class="fas fa-bus text-cyan-400 text-xl"></i>
-        <h3 class="text-xl font-semibold text-white light:text-slate-800">Local Bus Tracking</h3>
-      </div>
-      <div class="flex flex-wrap gap-2 mb-3">
-        <span class="px-3 py-0.5 text-xs rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">React</span>
-        <span class="px-3 py-0.5 text-xs rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">Firebase</span>
-        <span class="px-3 py-0.5 text-xs rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">Leaflet</span>
-      </div>
-      <ul class="text-sm text-slate-300 light:text-slate-600 space-y-1.5 flex-1 list-disc list-inside marker:text-cyan-400">
-        <li>Dual-interface driver/passenger roles with real-time location.</li>
-        <li>Firestore listeners for live bus tracking (3–5 sec updates).</li>
-        <li>Passengers track multiple active buses simultaneously.</li>
-      </ul>
-      <div class="mt-4 pt-3 border-t border-white/5 flex justify-end">
-        <a href="https://driver-dashboard-six.vercel.app/" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:text-cyan-300 text-sm flex items-center gap-1">
-          <i class="fas fa-external-link-alt"></i> Live Demo
-        </a>
-      </div>
-    </div>
-
-    <!-- Card 2: DoctorEzy -->
-    <div class="fade-up glass-card p-6 rounded-2xl hover-glow transition border border-white/5 flex flex-col">
-      <div class="flex items-center gap-3 mb-3">
-        <i class="fas fa-user-md text-cyan-400 text-xl"></i>
-        <h3 class="text-xl font-semibold text-white light:text-slate-800">
-          <a href="https://doctorezy.in/" target="_blank" rel="noopener noreferrer" class="hover:underline">DoctorEzy</a>
-        </h3>
-      </div>
-      <div class="flex flex-wrap gap-2 mb-3">
-        <span class="px-3 py-0.5 text-xs rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">React</span>          
-        <span class="px-3 py-0.5 text-xs rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">Tailwind</span>
-        <span class="px-3 py-0.5 text-xs rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">REST API</span>
-        <span class="px-3 py-0.5 text-xs rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">Framer Motion</span>
-      </div>
-      <ul class="text-sm text-slate-300 light:text-slate-600 space-y-1.5 flex-1 list-disc list-inside marker:text-cyan-400">
-        <li>Developed a full-stack doctor appointment platform with React, TypeScript, Node.js, Express.js, and MongoDB with JWT auth.</li>
-        <li>Built doctor management, booking, search/filtering, and subscription management via RESTful APIs and Redux Toolkit.</li>
-        <li>Designed a responsive UI with Tailwind CSS, secure API integration, and custom form validation.</li>
-      </ul>
-      <div class="mt-4 pt-3 border-t border-white/5 flex justify-end">
-        <a href="https://doctorezy.in/" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:text-cyan-300 text-sm flex items-center gap-1">
-          <i class="fas fa-external-link-alt"></i> Live Demo
-        </a>
-      </div>
-    </div>
-
-    <!-- Card 3: AI Resume Builder -->
-    <div class="fade-up glass-card p-6 rounded-2xl hover-glow transition border border-white/5 flex flex-col">
-      <div class="flex items-center gap-3 mb-3">
-        <i class="fas fa-robot text-cyan-400 text-xl"></i>
-        <h3 class="text-xl font-semibold text-white light:text-slate-800">AI Resume Builder</h3>
-      </div>
-      <div class="flex flex-wrap gap-2 mb-3">
-        <span class="px-3 py-0.5 text-xs rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">React</span>
-        <span class="px-3 py-0.5 text-xs rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">Gemini API</span>
-        <span class="px-3 py-0.5 text-xs rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">jsPDF</span>
-      </div>
-      <ul class="text-sm text-slate-300 light:text-slate-600 space-y-1.5 flex-1 list-disc list-inside marker:text-cyan-400">
-        <li>Generates ATS-friendly resumes, exports as PDF via jsPDF.</li>
-        <li>Gemini API auto-generates professional summaries in &lt;2s.</li>
-        <li>Live preview: real-time edits before export.</li>
-      </ul>
-      <div class="mt-4 pt-3 border-t border-white/5 flex justify-end">
-        <a href="#" class="text-cyan-400 hover:text-cyan-300 text-sm flex items-center gap-1">
-          <i class="fas fa-external-link-alt"></i> Live Demo
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-  <!-- SKILLS & EXTRAS GRID -->
-  <section id="skills" class="scroll-mt-20">
-    <div class="flex items-center gap-3 mb-10">
-      <i class="fas fa-code text-cyan-400 text-2xl"></i>
-      <h2 class="text-3xl md:text-4xl font-bold text-white light:text-slate-800">Toolbelt & Accolades</h2>
-    </div>
-
-    <!-- skills grid -->
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 fade-up">
-      <div class="glass-card p-4 rounded-2xl text-center hover-glow transition border border-white/5"><span class="text-sm font-medium">React 18</span></div>
-      <div class="glass-card p-4 rounded-2xl text-center hover-glow transition border border-white/5"><span class="text-sm font-medium">TypeScript</span></div>
-      <div class="glass-card p-4 rounded-2xl text-center hover-glow transition border border-white/5"><span class="text-sm font-medium">Firebase</span></div>
-      <div class="glass-card p-4 rounded-2xl text-center hover-glow transition border border-white/5"><span class="text-sm font-medium">Redux / Zustand</span></div>
-      <div class="glass-card p-4 rounded-2xl text-center hover-glow transition border border-white/5"><span class="text-sm font-medium">Node.js</span></div>
-      <div class="glass-card p-4 rounded-2xl text-center hover-glow transition border border-white/5"><span class="text-sm font-medium">Tailwind CSS</span></div>
-      <div class="glass-card p-4 rounded-2xl text-center hover-glow transition border border-white/5"><span class="text-sm font-medium">Figma</span></div>
-      <div class="glass-card p-4 rounded-2xl text-center hover-glow transition border border-white/5"><span class="text-sm font-medium">Vite</span></div>
-      <div class="glass-card p-4 rounded-2xl text-center hover-glow transition border border-white/5"><span class="text-sm font-medium">Postman</span></div>
-      <div class="glass-card p-4 rounded-2xl text-center hover-glow transition border border-white/5"><span class="text-sm font-medium">Git/GitHub</span></div>
-    </div>
-
-    <!-- extras: cert + achievement -->
-    <div class="grid md:grid-cols-2 gap-6 mt-8">
-      <div class="fade-up glass-card p-6 rounded-2xl border border-white/5 flex items-center gap-4">
-        <i class="fas fa-certificate text-emerald-400 text-3xl"></i>
-        <div><p class="font-semibold text-white light:text-slate-800">AWS Cloud Foundation</p><p class="text-sm text-slate-400">Certification · 2025</p></div>
-      </div>
-      <div class="fade-up glass-card p-6 rounded-2xl border border-white/5 flex items-center gap-4">
-        <i class="fas fa-award text-amber-400 text-3xl"></i>
-        <div><p class="font-semibold text-white light:text-slate-800">Hacktoberfest 2025</p><p class="text-sm text-slate-400">🏆 Supercontributor Badge</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT + FORM -->
-  <section id="contact" class="scroll-mt-20">
-    <div class="flex items-center gap-3 mb-10">
-      <i class="fas fa-envelope text-cyan-400 text-2xl"></i>
-      <h2 class="text-3xl md:text-4xl font-bold text-white light:text-slate-800">Get In Touch</h2>
-    </div>
-    <div class="glass-card p-6 md:p-8 rounded-3xl border border-white/5 max-w-2xl mx-auto">
-      <p class="text-slate-300 light:text-slate-600 mb-6 text-center">Looking for a React developer for your team? Let's discuss how I can help, or just say hi!</p>
-      
-      <!-- social icons (with image links) -->
-  
-
-      <form id="reachme-form" class="contact-form">
-        <div class="input-group">
-          <input type="text" name="name" required placeholder=" " />
-          <label>Your Name</label>
-        </div>
-        <div class="input-group">
-          <input type="email" name="email" required placeholder=" " />
-          <label>Email Address</label>
-        </div>
-        <div class="input-group">
-          <textarea name="message" rows="4" required placeholder=" "></textarea>
-          <label>Your Message</label>
-        </div>
-        <button id="form-submit-btn" type="submit" class="submit-btn w-full justify-center">
-          <span>Send Message</span>
-          <i class="fas fa-paper-plane"></i>
-        </button>
-        <div id="loader" style="display: none; text-align:center; color:#06B6D4; margin-top:0.8rem;">Sending...</div>
-        <div id="success-msg" style="display: none; color: #34D399; margin-top: 0.8rem; text-align:center;">✅ Message sent successfully!</div>
-      </form>
-    </div>
-  </section>
-
-  <!-- footer -->
-  <footer class="pt-8 border-t border-white/5 text-center text-sm text-slate-500">
-    <i class="fas fa-code text-cyan-400/50 mr-2"></i> crafted with precision · Jogendar Das Bairagi · 2026
-  </footer>
-</main>
-
-<!-- JavaScript: Theme + scroll reveal + form + copy email -->
-<script>
-document.getElementById("Email").addEventListener("click", function(e) {
-    e.preventDefault();
-    const email = "jogendar8520@gmail.com";
-
-    navigator.clipboard.writeText(email).then(() => {
-        document.getElementById("email-copied").style.display = "inline";
-        setTimeout(() => {
-            document.getElementById("email-copied").style.display = "none";
-        }, 2000);
-    }).catch(err => {
-        console.error("Failed to copy email: ", err);
+      try {
+        const formData = new FormData(contactForm);
+        await fetch('https://script.google.com/macros/s/AKfycbz-HvcurPZ1HXrhpDKJdfVDU-F-cEH1vZGnrA5PhHpD_rTD6vJEdhfzZxJ8FxrhWORHmQ/exec', {
+          method: 'POST',
+          body: formData
+        });
+        successMsg.textContent = '✓ Message sent successfully!';
+        successMsg.className = 'form-feedback success';
+        successMsg.style.display = 'block';
+        contactForm.reset();
+      } catch (error) {
+        console.error('Contact form submission failed:', error);
+        successMsg.textContent = 'Failed to send your message. Please try again or email jogendar8520@gmail.com.';
+        successMsg.className = 'form-feedback error';
+        successMsg.style.display = 'block';
+      } finally {
+        formLoader.style.display = 'none';
+        formButton.disabled = false;
+        submitLabel.textContent = 'Send Message';
+        submitIcon.className = 'fa-regular fa-paper-plane';
+      }
     });
-});
 
-const form = document.getElementById('reachme-form');
-const btn = document.getElementById('form-submit-btn');
-const loader = document.getElementById('loader');
-const successMsg = document.getElementById('success-msg');
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(open));
+      menuToggle.innerHTML = open ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navLinks.classList.remove('open'); menuToggle.setAttribute('aria-expanded','false');
+      menuToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+    }));
 
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-
-  btn.style.display = 'none';
-  loader.style.display = 'inline-block';
-
-  const formData = new FormData(form);
-
-  fetch('https://script.google.com/macros/s/AKfycbz-HvcurPZ1HXrhpDKJdfVDU-F-cEH1vZGnrA5PhHpD_rTD6vJEdhfzZxJ8FxrhWORHmQ/exec', {
-    method: 'POST',
-    body: formData
-  })
-  .then(response => {
-    loader.style.display = 'none';
-    successMsg.style.display = 'block';
-    form.reset();
-  })
-  .catch(error => {
-    console.error('Error!', error.message);
-    btn.style.display = 'block';
-    loader.style.display = 'none';
-    successMsg.textContent = 'Failed to send message. Please try again.';
-    successMsg.style.color = 'red';
-    successMsg.style.display = 'block';
-
-  });
-});
-
-  (function() {
-      const faders = document.querySelectorAll('.fade-up');
-    const observer = new IntersectionObserver((entries) => {
+    const revealObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+          entry.target.classList.add('in');
+          revealObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.15, rootMargin: '0px 0px -20px 0px' });
-    // theme toggle
- 
-    faders.forEach(el => observer.observe(el));
-    // make visible if already in view
-    setTimeout(() => {
-      faders.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight * 0.85) el.classList.add('visible');
-      });
-    }, 200);
+    }, {threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    // smooth nav scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) target.scrollIntoView({ behavior: 'smooth' });
-      });
-    });
-  })();
+    const progress = document.getElementById('progress');
+    window.addEventListener('scroll', () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.width = (max > 0 ? window.scrollY / max * 100 : 0) + '%';
+    }, {passive:true});
 
-  //mobile reponsive navbar 
-  document.addEventListener('DOMContentLoaded', function() {
-  const menuToggle = document.getElementById('menuToggle');
-  const mobileMenu = document.getElementById('mobileMenu');
-  const navbar = document.getElementById('navbar');
-  
-  // Toggle mobile menu
-  menuToggle.addEventListener('click', function(e) {
-    e.stopPropagation();
-    const isOpen = mobileMenu.classList.contains('max-h-96');
-    
-    if (isOpen) {
-      // Close menu
-      mobileMenu.classList.remove('max-h-96', 'opacity-100', 'visible');
-      mobileMenu.classList.add('max-h-0', 'opacity-0', 'invisible');
-      // Reset hamburger to default
-      const spans = menuToggle.querySelectorAll('span');
-      spans.forEach(span => {
-        span.classList.remove('rotate-45', '-translate-y-2', '-rotate-45', 'translate-y-2');
-      });
-    } else {
-      // Open menu
-      mobileMenu.classList.remove('max-h-0', 'opacity-0', 'invisible');
-      mobileMenu.classList.add('max-h-96', 'opacity-100', 'visible');
-      // Animate hamburger to X
-      const spans = menuToggle.querySelectorAll('span');
-      spans[0].classList.add('rotate-45', 'translate-y-2');
-      spans[1].classList.add('opacity-0');
-      spans[2].classList.add('-rotate-45', '-translate-y-2');
-    }
-  });
-
-  // Close menu when clicking outside
-  document.addEventListener('click', function(e) {
-    if (!navbar.contains(e.target)) {
-      mobileMenu.classList.remove('max-h-96', 'opacity-100', 'visible');
-      mobileMenu.classList.add('max-h-0', 'opacity-0', 'invisible');
-      const spans = menuToggle.querySelectorAll('span');
-      spans.forEach(span => {
-        span.classList.remove('rotate-45', '-translate-y-2', '-rotate-45', 'translate-y-2');
-      });
-    }
-  });
-
-  // Close menu when clicking a link
-  mobileMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', function() {
-      mobileMenu.classList.remove('max-h-96', 'opacity-100', 'visible');
-      mobileMenu.classList.add('max-h-0', 'opacity-0', 'invisible');
-      const spans = menuToggle.querySelectorAll('span');
-      spans.forEach(span => {
-        span.classList.remove('rotate-45', '-translate-y-2', '-rotate-45', 'translate-y-2');
-      });
-    });
-  });
-});
-
-</script>
+    const glow = document.getElementById('cursorGlow');
+    if (window.matchMedia('(pointer:fine)').matches) {
+      window.addEventListener('pointermove', e => {
+        glow.style.left = e.clientX + 'px'; glow.style.top = e.clientY + 'px';
+      }, {passive:true});
+    } else glow.style.display = 'none';
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
